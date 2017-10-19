@@ -8,12 +8,37 @@
 // @grant        none
 // ==/UserScript==
 
-let viewsUrl = 'https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/all-agents/#1/daily/#2/#3';
+/////////////////////////////////////////////////////////
 
-function displayViews(jsonObject, title) {
-  console.log(title);
-  console.log(jsonObject.views);
+let MAX_ARTICLES = 15;
+
+function ArticleManager() {
+
+  this.articles = {};
+
+  this.addArticle = function(title, views, url) {
+
+    if (Object.keys(this.articles).length > MAX_ARTICLES) {
+      let minValue = Infinity, minKey = null;
+      for (let article in this.articles) {
+        if (this.articles[article].views < minValue) {
+          minValue = this.articles[article].views;
+          minKey = article;
+        }
+      }
+      if (views > minValue) {
+        delete this.articles[minKey];
+      } else return;
+    }
+    this.articles[title] = {'views': views, 'url': url};
+    console.log(this);
+  };
 }
+
+/////////////////////////////////////////////////////////
+
+let viewsUrl = 'https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/all-agents/#1/daily/#2/#3';
+let AM = new ArticleManager();
 
 function httpGetAsync(theUrl, callback)
 {
@@ -30,13 +55,13 @@ function httpGetAsync(theUrl, callback)
   }
 }
 
-function getViews(pageTitle, dateBeg, dateEnd) { // Get views of a given page. Date format : AAAAMMDD
+function getViews(pageTitle, pageUrl, dateBeg, dateEnd) { // Get views of a given page. Date format : AAAAMMDD
   pageTitle.replace("/", "_");
   let replaceRegExp = /^(.*)(#1)(.*)(#2)(\/)(#3)+/; // Regexp to formate getviews url from api
   try {
     httpGetAsync(
       viewsUrl.replace(replaceRegExp, "$1" + pageTitle + "$3" + dateBeg + "/" + dateEnd ),
-        function(responseJSON) { displayViews(responseJSON, pageTitle); }
+        function(responseJSON) { AM.addArticle(pageTitle, responseJSON.views, pageUrl); }
     );
   } catch (error) {
     console.warn(error);
@@ -75,6 +100,6 @@ function getLinks(page) { // Get pertinent links of a wikipedia page
     'use strict';
 
     for (let l of getLinks(document)) {
-      getViews(l.title, "20171018", "20171019");
+      getViews(l.title, l.href, "20171018", "20171019");
     }
 })();
