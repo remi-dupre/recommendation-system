@@ -10,18 +10,27 @@
 
 let viewsUrl = 'https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/all-agents/#1/daily/#2/#3';
 
-function httpGet(theUrl) { // Gets the webpage at the given URL
-  let xmlHttp = new XMLHttpRequest();
-  xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
-  xmlHttp.send( null );
-  return xmlHttp.responseText;
+function displayViews(jsonObject, title) {
+  console.log(title);
+  console.log(jsonObject.views);
+}
+
+function httpGetAsync(theUrl, callback) { // Asynchronous get function
+    let xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() {
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+            callback(JSON.parse(xmlHttp.responseText).items[0]);
+    };
+    xmlHttp.open("GET", theUrl, true); // true for asynchronous
+    xmlHttp.send(null);
 }
 
 function getViews(pageTitle, dateBeg, dateEnd) { // Get views of a given page. Date format : AAAAMMDD
   let replaceRegExp = /^(.*)(#1)(.*)(#2)(\/)(#3)+/; // Regexp to formate getviews url from api
-  return JSON.parse(httpGet(
-    viewsUrl.replace(replaceRegExp, "$1" + pageTitle + "$3" + dateBeg + "/" + dateEnd )
-  )).items[0].views;
+  httpGetAsync(
+    viewsUrl.replace(replaceRegExp, "$1" + pageTitle + "$3" + dateBeg + "/" + dateEnd ),
+      function(responseJSON) { displayViews(responseJSON, pageTitle); }
+  );
 }
 
 function getLinks(page) { // Get pertinent links of a wikipedia page
@@ -48,7 +57,6 @@ function getLinks(page) { // Get pertinent links of a wikipedia page
     if (!excluder.exec(text)) { goodLinks.push(links[i]); } // And we add the others
   }
 
-
   return goodLinks;
 }
 
@@ -56,7 +64,6 @@ function getLinks(page) { // Get pertinent links of a wikipedia page
     'use strict';
 
     for (let l of getLinks(document)) {
-      console.log(l.title);
-      console.log(getViews(l.title, "20171018", "20171019"));
+      getViews(l.title, "20171018", "20171019");
     }
 })();
