@@ -15,7 +15,9 @@ function displayViews(jsonObject, title) {
   console.log(jsonObject.views);
 }
 
-function httpGetAsync(theUrl, callback) { // Asynchronous get function
+function httpGetAsync(theUrl, callback)
+{
+  try {
     let xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function() {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
@@ -23,14 +25,22 @@ function httpGetAsync(theUrl, callback) { // Asynchronous get function
     };
     xmlHttp.open("GET", theUrl, true); // true for asynchronous
     xmlHttp.send(null);
+  } catch (error) {
+    throw error;
+  }
 }
 
 function getViews(pageTitle, dateBeg, dateEnd) { // Get views of a given page. Date format : AAAAMMDD
+  pageTitle.replace("/", "_");
   let replaceRegExp = /^(.*)(#1)(.*)(#2)(\/)(#3)+/; // Regexp to formate getviews url from api
-  httpGetAsync(
-    viewsUrl.replace(replaceRegExp, "$1" + pageTitle + "$3" + dateBeg + "/" + dateEnd ),
-      function(responseJSON) { displayViews(responseJSON, pageTitle); }
-  );
+  try {
+    httpGetAsync(
+      viewsUrl.replace(replaceRegExp, "$1" + pageTitle + "$3" + dateBeg + "/" + dateEnd ),
+        function(responseJSON) { displayViews(responseJSON, pageTitle); }
+    );
+  } catch (error) {
+    console.warn(error);
+  }
 }
 
 function getLinks(page) { // Get pertinent links of a wikipedia page
@@ -56,6 +66,7 @@ function getLinks(page) { // Get pertinent links of a wikipedia page
     let excluder = new RegExp(/^.*[\[<].*|[\d-_]+$/, 'i'); // We detect dates, imgs, isbn...
     if (!excluder.exec(text)) { goodLinks.push(links[i]); } // And we add the others
   }
+
 
   return goodLinks;
 }
