@@ -45,7 +45,7 @@ function ArticleManager() {
     for (let i=0; i < paragraphs.length; ++i) {
         let tmp_links = paragraphs[i].getElementsByTagName("a");
         for (let j=0; j < tmp_links.length; ++j) {
-            if ( !["new", "mw-redirect"].includes(tmp_links[j].className)) {
+            if ( !["new", "mw-redirect", "internal"].includes(tmp_links[j].className)) {
               links.push(tmp_links[j]);
             }
         }
@@ -58,7 +58,6 @@ function ArticleManager() {
       let excluder = new RegExp(/^.*[\[<].*|[\d-_]+$/, 'i'); // We detect dates, imgs, isbn...
       if (!excluder.exec(text)) { goodLinks.push(links[i]); } // And we add the others
     }
-
     return goodLinks;
   };
 
@@ -100,7 +99,7 @@ function HTTPManager() {
   this.decountArticle = function() {
     this.requestsThrown--;
 
-    if (this.requestsThrown == 0) {
+    if (this.requestsThrown === 0) {
       console.log(AM);
     }
   };
