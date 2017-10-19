@@ -63,6 +63,7 @@ function ArticleManager() {
 
   this.getViews = function(pageTitle, pageUrl, dateBeg, dateEnd) { // Get views of a given page. Date format : AAAAMMDD
     pageTitle.replace("/", "_");
+    if (pageTitle === "") return;
     let replaceRegExp = /^(.*)(#1)(.*)(#2)(\/)(#3)+/; // Regexp to formate getviews url from api
     try {
       let that = this;
