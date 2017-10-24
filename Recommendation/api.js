@@ -7,3 +7,4 @@ const testArticle = {
 };
 
 apiMod.getViews(testArticle);
+apiMod.getAttr(testArticle.title, 'categories', console.log);

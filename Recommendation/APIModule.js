@@ -26,4 +26,20 @@ class APIModule extends HttpModule {
         }));
     };
 
+    /** Get specific parameter for a given article
+     * @param {string} title the title of the article
+     * @param {string} key the key we want informations about
+     */
+    getAttr(title, key, handle) {
+        this.sendQueryMainAPI(
+            {
+                'prop': key,
+                'titles': title
+            },
+            function(data) {
+                let filtered = data.query.pages;
+                handle(filtered)
+            }
+        );
+    };
 }
