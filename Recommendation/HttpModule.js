@@ -26,7 +26,7 @@ class HttpModule {
     */
     sendQueryMainAPI(parameters, handle) {
         let url = Constants.PEDIA_URL.replace("[[LANG]]", this.LANGUAGE) +
-                    "?action=query&format=json";
+                    "?action=query&format=json&cllimit=500";
         for (let key in parameters)
             url += "&" + key + "=" + parameters[key];
         this.sendQuery(url, handle);
