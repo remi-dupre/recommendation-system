@@ -1,7 +1,7 @@
 const Constants = require("./Constants.js");
 
 // To run locally with node
-const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+// const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 class HttpModule {
 
