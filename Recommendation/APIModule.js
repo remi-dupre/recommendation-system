@@ -1,5 +1,3 @@
-const HttpModule = require('./HttpModule.js');
-
 class APIModule extends HttpModule {
 
     /**
@@ -45,5 +43,3 @@ class APIModule extends HttpModule {
         );
     };
 }
-
-module.exports = APIModule;
