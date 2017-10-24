@@ -1,5 +1,3 @@
-const APIModule = require('./APIModule.js');
-
 let apiMod = new APIModule("en");
 
 const testArticle = {
