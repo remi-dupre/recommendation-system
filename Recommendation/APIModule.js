@@ -31,16 +31,13 @@ class APIModule extends HttpModule {
      * @param {string} key the key we want informations about
      * @param {function} handler a function called when the request ends with an object as parameter
      */
-    getAttr(id, key, handle) {
+    getAttribute(id, key, handle) {
         this.sendQueryMainAPI(
             {
                 'prop': key,
                 'pageids': id
             },
-            function(data) {
-                let filtered = data.query.pages[id][key];
-                handle(filtered)
-            }
+            data => handle( data.query.pages[id][key] ) // Callback handle on the key category
         );
     };
 
@@ -50,36 +47,27 @@ class APIModule extends HttpModule {
      * @param {function} handler a function called when the distance has been processed
      */
     distance(page1, page2, handler) {
-        let categories = [null, null];
-
         // Finally process the distance with two given list of categories
-        function process_distance() {
-            let intersection = 0; // the count of categories that belongs to both
+        // the count of categories that belongs to both
+        const categories = [];
 
-            for (let cat1 in categories[0])
-                for (let cat2 in categories[1])
-                    if (categories[0][cat1].title == categories[1][cat2].title)
-                        intersection += 1;
+        [page1, page2].map( p => {
+            this.getAttribute(p, 'categories', (data) => {
+                categories.push(data);
+                if (categories.length === 2)
+                    process_distance();
+            });
+        });
 
-            // Total number of categories
-            let total_count = categories[0].length + categories[1].length - intersection;
-
+        const process_distance = () => {
+            const categories_0_titles = Object.values(categories[0].map( o => o.title ));
+            const categories_1_titles = Object.values(categories[1].map( o => o.title ));
+            const intersection = categories_0_titles.reduce(
+                (acc, elem) =>  acc + (categories_1_titles.includes(elem) ? 1 : 0),
+                0
+            );
             handler(1 - (intersection / Math.min(categories[0].length, categories[1].length)));
-        }
-
-        this.getAttr(page1, 'categories', function(data) {
-            categories[0] = data;
-
-            if (categories[1] != null)
-                process_distance()
-        });
-
-        this.getAttr(page2, 'categories', function(data) {
-            categories[1] = data;
-
-            if (categories[0] != null)
-                process_distance()
-        });
+        };
     }
 
 
