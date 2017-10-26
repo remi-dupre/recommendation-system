@@ -1,0 +1,21 @@
+ #plug{
+ 	position: fixed;
+ 	right: 0px; top: 50px;
+ 	width: 400px; height: 260px;
+ 	opacity: 0.75;
+ 	background-color: black; color: white;
+ }
+
+ #recommend{
+ 	position: absolute; left: 10px; top: 10px;
+ }
+
+ #like_button{
+ 	position: absolute;
+ 	left: 30px; top: 80px;
+ }
+
+ #dislike_button{
+ 	position: absolute;
+ 	left: 130px; top: 80px;
+ }
