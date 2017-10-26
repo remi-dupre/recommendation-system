@@ -16,9 +16,9 @@ function setup() {
   div.child(like_button);
   div.child(dislike_button);
 
-  var serandipity = createP("Serandipity");
-  div.child(serandipity);
-  serandipity.position(80,110);
+  var serendipity = createP("Serendipity");
+  div.child(serendipity);
+  serendipity.position(80,110);
 
 
   var slider = createSlider(0,100,100);
