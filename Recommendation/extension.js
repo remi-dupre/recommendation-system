@@ -20,4 +20,7 @@
 
 var newCSS = GM_getResourceText ("customCSS");
 GM_addStyle (newCSS);
-_
+
+const p = new p5();
+
+setup();
