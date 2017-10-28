@@ -26,7 +26,6 @@
 GM_addStyle(GM_getResourceText ("bootstrap"));
 GM_addStyle(GM_getResourceText ("font-awesome"));
 GM_addStyle(GM_getResourceText ("customCSS"));
-$("body").append(GM_getResourceText("user-interface"));
 
 
 const p = new p5();
@@ -34,6 +33,8 @@ const p = new p5();
 setup();
 
 $(document).ready(function () {
+    $("body").prepend(GM_getResourceText("user-interface"));
+
     $('#sidebarCollapse').on('click', function () {
         $('#sidebar').toggleClass('active');
     });
