@@ -23,9 +23,9 @@
 // @grant        GM_getResourceText
 // ==/UserScript==
 
-GM_addStyle(GM_getResourceText ("bootstrap"));
-GM_addStyle(GM_getResourceText ("font-awesome"));
-GM_addStyle(GM_getResourceText ("customCSS"));
+GM_addStyle(GM_getResourceText("bootstrap"));
+GM_addStyle(GM_getResourceText("font-awesome"));
+GM_addStyle(GM_getResourceText("customCSS"));
 
 
 const p = new p5();
