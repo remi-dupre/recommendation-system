@@ -1,4 +1,4 @@
-<div class="wrapper">
+<div class="wrapper portal" role="navigation">
 
     <nav id="sidebar">
         <div class="sidebar-header">
@@ -34,3 +34,12 @@
         Toggle
     </button>
 <div>
+
+
+<script>
+$(document).ready(function () {
+    $('#sidebarCollapse').on('click', function () {
+        $('#sidebar').toggleClass('active');
+    });
+});
+</script>

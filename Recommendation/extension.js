@@ -33,9 +33,5 @@ const p = new p5();
 setup();
 
 $(document).ready(function () {
-    $("body").prepend(GM_getResourceText("user-interface"));
-
-    $('#sidebarCollapse').on('click', function () {
-        $('#sidebar').toggleClass('active');
-    });
+    $("#p-navigation").after(GM_getResourceText("user-interface"));
 });
