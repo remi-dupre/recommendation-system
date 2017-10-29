@@ -147,5 +147,8 @@
 
 #serenSlider .slider-selection {
 	background: #BABABA;
+}
+
+#serenSlider {
     width: 100%;
 }
