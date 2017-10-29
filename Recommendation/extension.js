@@ -118,4 +118,6 @@ $('#serendipity').slider({
 	}
 });
 
+$('[data-toggle="tooltip"]').tooltip(); 
+
 });
