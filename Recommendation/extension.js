@@ -35,17 +35,7 @@ $("head").append('<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/cs
 
 $( document ).ready(function() {
 
-$("body").prepend("<button type='button' id='sidebarCollapse' class='navbar-btn'><span></span><span></span><span></span></button>")
-         .wrapInner( "<div id='content'></div>")
-         .prepend(GM_getResourceText("user-interface"))
-         .wrapInner( "<div id='wrapper'></div>");
-
-
- $('#sidebarCollapse').on('click', function () {
-     $('#sidebar').toggleClass('active');
-     $(this).toggleClass('active');
- });
-
+$("#p-navigation").after(GM_getResourceText("user-interface"));
 
 $('.btn-number').click(function(e) {
     e.preventDefault();
