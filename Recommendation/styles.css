@@ -173,6 +173,12 @@ ul ul a {
 
 }
 
+.navbar-btn {
+    box-shadow: none;
+    outline: none !important;
+    border: none;
+}
+
 /* Buttons */
 
 .ui-group-buttons .or {

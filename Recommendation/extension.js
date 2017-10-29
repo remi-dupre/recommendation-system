@@ -13,6 +13,7 @@
 // @resource     customCSS https://raw.githubusercontent.com/remi-dupre/recommendation-system/master/Recommendation/styles.css
 // @require      https://code.jquery.com/jquery-1.12.0.min.js
 // @require      https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js
+// @require      https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.9.0/bootstrap-slider.min.js
 // @resource     user-interface https://raw.githubusercontent.com/remi-dupre/recommendation-system/master/Recommendation/user-interface.html
 // @require      https://raw.githubusercontent.com/remi-dupre/recommendation-system/master/Recommendation/userinterface.js
 // @require      https://raw.githubusercontent.com/remi-dupre/recommendation-system/master/Recommendation/Constants.js
@@ -27,15 +28,17 @@
 // GM_addStyle(GM_getResourceText("customCSS"));
 
 $("head").append('<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css">')
+         .append('<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.9.0/css/bootstrap-slider.min.css" rel="stylesheet" type="text/css">')
          .append('<link href="https://raw.githubusercontent.com/remi-dupre/recommendation-system/master/Recommendation/styles.css" rel="stylesheet" type="text/css">');
-
 // const p = new p5();
 // setup();
 
-$( "body" ).prepend("<button type='button' id='sidebarCollapse' class='navbar-btn'><span></span><span></span><span></span></button>")
-           .wrapInner( "<div id='content'></div>")
-           .after(GM_getResourceText("user-interface"))
-           .wrapInner( "<div id='wrapper'></div>");
+$( document ).ready(function() {
+
+$("body").prepend("<button type='button' id='sidebarCollapse' class='navbar-btn'><span></span><span></span><span></span></button>")
+         .wrapInner( "<div id='content'></div>")
+         .prepend(GM_getResourceText("user-interface"))
+         .wrapInner( "<div id='wrapper'></div>");
 
 
  $('#sidebarCollapse').on('click', function () {
@@ -121,4 +124,6 @@ $('#serendipity').slider({
 	formatter: function(value) {
 		return 'Serendipity value: ' + value;
 	}
+});
+
 });
