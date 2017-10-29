@@ -149,6 +149,6 @@
 	background: #BABABA;
 }
 
-#serenSlider .slider.slider-horizontal {
-    width: 100%;
+.slider {
+    width: 100% !important;
 }
