@@ -8,7 +8,7 @@
 // @require 	 https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.16/p5.min.js
 // @require 	 https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.16/addons/p5.dom.min.js
 // @require 	 https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.16/addons/p5.sound.min.js
-// @resource     bootstrap https://raw.githubusercontent.com/remi-dupre/recommendation-system/master/Recommendation/bootstrap/css/custom-bootstrap.css
+// @resource     bootstrap https://raw.githubusercontent.com/remi-dupre/recommendation-system/master/Recommendation/css/custom-bootstrap.css
 // @resource     bootstrap-slider https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.9.0/css/bootstrap-slider.min.css
 // @resource     customCSS https://raw.githubusercontent.com/remi-dupre/recommendation-system/master/Recommendation/css/style.css
 // @require      https://code.jquery.com/jquery-1.12.0.min.js
