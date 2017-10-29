@@ -145,12 +145,7 @@
     padding-left: 15px
 }
 
-.center {
-    width: 150px;
-    margin: 40px auto;
-}
-
-
 #serenSlider .slider-selection {
 	background: #BABABA;
+    width: 100%;
 }
