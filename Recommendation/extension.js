@@ -115,9 +115,10 @@ $(".input-number").keydown(function(e) {
 $('#serendipity').slider({
 	formatter: function(value) {
 		return 'Serendipity value: ' + value;
-	}
+	},
+    tooltip_position: 'bottom'
 });
 
-$('[data-toggle="tooltip"]').tooltip(); 
+$('[data-toggle="tooltip"]').tooltip();
 
 });
