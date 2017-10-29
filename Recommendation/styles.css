@@ -29,70 +29,22 @@
 .wrapper {
     display: flex;
     align-items: stretch;
+    perspective: 1500px;
 }
 
 #sidebar {
+    font-family: 'Poppins', sans-serif;
     min-width: 250px;
     max-width: 250px;
-    min-height: 100vh;
+    background: #7386D5;
+    color: #fff;
+    transition: all 0.6s cubic-bezier(0.945, 0.020, 0.270, 0.665);
+    transform-origin: bottom left;
 }
 
 #sidebar.active {
     margin-left: -250px;
-}
-
-a[data-toggle="collapse"] {
-    position: relative;
-}
-
-a[aria-expanded="false"]::before, a[aria-expanded="true"]::before {
-    content: '\e259';
-    display: block;
-    position: absolute;
-    right: 20px;
-    font-family: 'Glyphicons Halflings';
-    font-size: 0.6em;
-}
-
-a[aria-expanded="true"]::before {
-    content: '\e260';
-}
-
-@media (max-width: 768px) {
-    #sidebar {
-        margin-left: -250px;
-    }
-    #sidebar.active {
-        margin-left: 0;
-    }
-}
-
-
-
-body {
-    font-family: 'Poppins', sans-serif;
-    background: #fafafa;
-}
-
-p {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.1em;
-    font-weight: 300;
-    line-height: 1.7em;
-    color: #999;
-}
-
-a, a:hover, a:focus {
-    color: inherit;
-    text-decoration: none;
-    transition: all 0.3s;
-}
-
-#sidebar {
-    /* don't forget to add all the previously mentioned styles here too */
-    background: #7386D5;
-    color: #fff;
-    transition: all 0.3s;
+    transform: rotateY(100deg);
 }
 
 #sidebar .sidebar-header {
@@ -124,8 +76,213 @@ a, a:hover, a:focus {
     color: #fff;
     background: #6d7fcc;
 }
+
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+a[aria-expanded="false"]::before, a[aria-expanded="true"]::before {
+    content: '\e259';
+    display: block;
+    position: absolute;
+    right: 20px;
+    font-family: 'Glyphicons Halflings';
+    font-size: 0.6em;
+}
+a[aria-expanded="true"]::before {
+    content: '\e260';
+}
+
+
 ul ul a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
     background: #6d7fcc;
+}
+
+
+#content {
+    padding: 20px;
+    min-height: 100vh;
+    transition: all 0.3s;
+}
+
+#sidebarCollapse {
+    width: 40px;
+    height: 40px;
+    background: #f5f5f5;
+}
+
+#sidebarCollapse span {
+    width: 80%;
+    height: 2px;
+    margin: 0 auto;
+    display: block;
+    background: #555;
+    transition: all 0.8s cubic-bezier(0.810, -0.330, 0.345, 1.375);
+    transition-delay: 0.2s;
+}
+
+#sidebarCollapse span:first-of-type {
+    transform: rotate(45deg) translate(2px, 2px);
+}
+#sidebarCollapse span:nth-of-type(2) {
+    opacity: 0;
+}
+#sidebarCollapse span:last-of-type {
+    transform: rotate(-45deg) translate(1px, -1px);
+}
+
+
+#sidebarCollapse.active span {
+    transform: none;
+    opacity: 1;
+    margin: 5px auto;
+}
+
+
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+        transform: rotateY(90deg);
+    }
+    #sidebar.active {
+        margin-left: 0;
+        transform: none;
+    }
+    #sidebarCollapse span:first-of-type,
+    #sidebarCollapse span:nth-of-type(2),
+    #sidebarCollapse span:last-of-type {
+        transform: none;
+        opacity: 1;
+        margin: 5px auto;
+    }
+    #sidebarCollapse.active span {
+        margin: 0 auto;
+    }
+    #sidebarCollapse.active span:first-of-type {
+        transform: rotate(45deg) translate(2px, 2px);
+    }
+    #sidebarCollapse.active span:nth-of-type(2) {
+        opacity: 0;
+    }
+    #sidebarCollapse.active span:last-of-type {
+        transform: rotate(-45deg) translate(1px, -1px);
+    }
+
+}
+
+/* Buttons */
+
+.ui-group-buttons .or {
+    position: relative;
+    float: left;
+    width: .3em;
+    height: 1.3em;
+    z-index: 3;
+    font-size: 12px
+}
+
+.ui-group-buttons .or:before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    content: 'or';
+    background-color: #5a5a5a;
+    margin-top: -.1em;
+    margin-left: -.9em;
+    width: 1.8em;
+    height: 1.8em;
+    line-height: 1.55;
+    color: #fff;
+    font-style: normal;
+    font-weight: 400;
+    text-align: center;
+    border-radius: 500px;
+    -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+.ui-group-buttons .or:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: ' ';
+    width: .3em;
+    height: 2.84em;
+    background-color: rgba(0, 0, 0, 0);
+    border-top: .6em solid #5a5a5a;
+    border-bottom: .6em solid #5a5a5a
+}
+
+.ui-group-buttons .or.or-lg {
+    height: 1.3em;
+    font-size: 16px
+}
+
+.ui-group-buttons .or.or-lg:after {
+    height: 2.85em
+}
+
+.ui-group-buttons .or.or-sm {
+    height: 1em
+}
+
+.ui-group-buttons .or.or-sm:after {
+    height: 2.5em
+}
+
+.ui-group-buttons .or.or-xs {
+    height: .25em
+}
+
+.ui-group-buttons .or.or-xs:after {
+    height: 1.84em;
+    z-index: -1000
+}
+
+.ui-group-buttons {
+    display: inline-block;
+    vertical-align: middle
+}
+
+.ui-group-buttons:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden
+}
+
+.ui-group-buttons .btn {
+    float: left;
+    border-radius: 0
+}
+
+.ui-group-buttons .btn:first-child {
+    margin-left: 0;
+    border-top-left-radius: .25em;
+    border-bottom-left-radius: .25em;
+    padding-right: 15px
+}
+
+.ui-group-buttons .btn:last-child {
+    border-top-right-radius: .25em;
+    border-bottom-right-radius: .25em;
+    padding-left: 15px
+}
+
+.center {
+    width: 150px;
+    margin: 40px auto;
+}
+
+
+#serenSlider .slider-selection {
+	background: #BABABA;
 }

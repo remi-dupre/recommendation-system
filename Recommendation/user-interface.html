@@ -1,45 +1,42 @@
-<div class="wrapper portal" role="navigation">
-
-    <nav id="sidebar">
-        <div class="sidebar-header">
-            <h3>Ike<i class="fa fa-wikipedia-w" aria-hidden="true"></i>iki</div>
-        </div>
-
-        <ul class="list-unstyled components">
-            <li class="active">
-                <div class="group-buttons">
-                    <a href="#" class="btn btn-success" role="button"><span class="glyphicon glyphicon-thumbs-up"></span></a>
-                    <div class="or"></div>
-                    <a href="#" class="btn btn-danger" role="button"><span class="glyphicon glyphicon-thumbs-down"></span></a>
-                </div>
-            </li>
-
-            <li><!-- dropdown items -->
-                <a href="#submenu" data-toggle="collapse" aria-expanded="true"><span class="glyphicon glyphicon-th-list"></span> Recommended articles</a>
-                <ul class="collapse list-unstyled" id="submenu">
-                    <li><span class="glyphicon glyphicon glyphicon-chevron-right"></span> <a href="#">Article 1</a></li>
-                    <li><span class="glyphicon glyphicon glyphicon-chevron-right"></span><a href="#">Article 2</a></li>
-                    <li><span class="glyphicon glyphicon glyphicon-chevron-right"></span><a href="#">Article 3</a></li>
-                </ul>
-
-            <li><a href="#"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Serendipity</a></li>
-        </ul>
-    </nav>
-
-</div>
-
-<div id="content">
-    <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
-        <i class="glyphicon glyphicon-align-left"></i>
-        Toggle
-    </button>
-<div>
-
-
-<script>
-$(document).ready(function () {
-    $('#sidebarCollapse').on('click', function () {
-        $('#sidebar').toggleClass('active');
-    });
-});
-</script>
+<nav id="sidebar">
+    <div class="sidebar-header">
+        <h3>IkeWiki</h3>
+    </div>
+    
+    <ul class="list-unstyled components">
+        <p>What about this article?</p>
+        <li class="active">
+            <div class="ui-group-buttons">
+                <a href="#" class="btn btn-success" role="button"><span class="glyphicon glyphicon-thumbs-up"></span></a>
+                <div class="or"></div>
+                <a href="#" class="btn btn-danger" role="button"><span class="glyphicon glyphicon-thumbs-down"></span></a>
+            </div>
+        </li>
+        <li>
+            <a href="#articlesSubmenu" data-toggle="collapse" aria-expanded="true">Article Recommendation</a>
+            <ul class="collapse list-unstyled" id="articlesSubmenu">
+                <li><a href="#">Article 1</a></li>
+                <li><a href="#">Article 2</a></li>
+                <li><a href="#">Article 3</a></li>
+            </ul>
+        </li>
+        <li>
+            <div class="input-group">
+                <span class="input-group-btn">
+                      <button type="button" class="btn btn-danger btn-number" data-type="minus" data-field="quant[2]">
+                        <span class="glyphicon glyphicon-minus"></span>
+                </button>
+                </span>
+                <input type="text" name="quant[2]" class="form-control input-number" value="10" min="1" max="10">
+                <span class="input-group-btn">
+                      <button type="button" class="btn btn-success btn-number" data-type="plus" data-field="quant[2]">
+                          <span class="glyphicon glyphicon-plus"></span>
+                </button>
+                </span>
+            </div>
+        </li>
+        <li>
+            <input id="serendipity" data-slider-id='serenSlider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="5"/>
+        </li>
+    </ul>
+</nav>
