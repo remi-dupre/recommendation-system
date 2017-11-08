@@ -6,9 +6,6 @@
 // @downloadURL  https://raw.githubusercontent.com/remi-dupre/recommendation-system/master/Recommendation/extension.js
 // @updateURL    https://raw.githubusercontent.com/remi-dupre/recommendation-system/master/Recommendation/extension.js
 // @match        https://en.wikipedia.org/wiki/*
-// @require 	 https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.16/p5.min.js
-// @require 	 https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.16/addons/p5.dom.min.js
-// @require 	 https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.16/addons/p5.sound.min.js
 // @resource     bootstrap https://raw.githubusercontent.com/remi-dupre/recommendation-system/master/Recommendation/css/custom-bootstrap.css
 // @resource     bootstrap-slider https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.9.0/css/bootstrap-slider.min.css
 // @resource     customCSS https://raw.githubusercontent.com/remi-dupre/recommendation-system/master/Recommendation/css/style.css
@@ -29,12 +26,6 @@ GM_addStyle(GM_getResourceText("bootstrap"));
 GM_addStyle(GM_getResourceText("bootstrap-slider"));
 GM_addStyle(GM_getResourceText("customCSS"));
 
-// $("head").append('<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css">')
-//          .append('<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.9.0/css/bootstrap-slider.min.css" rel="stylesheet" type="text/css">')
-//          .append('<link href="https://raw.githubusercontent.com/remi-dupre/recommendation-system/master/Recommendation/styles.css" rel="stylesheet" type="text/css">');
-
-// const p = new p5();
-// setup();
 
 $( document ).ready(function() {
 
