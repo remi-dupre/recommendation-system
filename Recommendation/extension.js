@@ -3,7 +3,8 @@
 // @namespace    http://tampermonkey.net/
 // @version      0.1
 // @description  Wikipedia Recommender System
-// @author       You
+// @downloadURL  https://raw.githubusercontent.com/remi-dupre/recommendation-system/master/Recommendation/extension.js
+// @updateURL    https://raw.githubusercontent.com/remi-dupre/recommendation-system/master/Recommendation/extension.js
 // @match        https://en.wikipedia.org/wiki/*
 // @require 	 https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.16/p5.min.js
 // @require 	 https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.16/addons/p5.dom.min.js
