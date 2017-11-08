@@ -35,3 +35,7 @@ class User {
         this._articlesVote[id] = 'down';
     }
 }
+
+
+// Load user data from storage
+let user = GM_getValue('userdata', new User());
