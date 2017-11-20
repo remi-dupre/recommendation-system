@@ -34,8 +34,25 @@ class User {
     downVoted(id) {
         this._articlesVote[id] = 'down';
     }
+
+    addArticleSeen() {
+        const articlesContainer = (
+            (localStorage['WikiRec|articles'] == undefined) ?
+            {} :
+            JSON.parse(localStorage['WikiRec|articles'])
+        );
+        const pageTitle = location.href.match(/wiki\/.*/i)[0].slice(5);
+        if ( !(pageTitle in articlesContainer) ) {
+            articlesContainer[pageTitle] = {"lastSeen": Date.now(), "count": 1 };
+        } else {
+            articlesContainer[pageTitle]["lastSeen"] = Date.now();
+            articlesContainer[pageTitle]["count"] += 1;
+        }
+        localStorage['WikiRec|articles'] = JSON.stringify(articlesContainer);
+    }
 }
 
 
 // Load user data from storage
-let user = GM_getValue('userdata', new User());
+const user = GM_getValue('userdata', new User());
+user.addArticleSeen();
