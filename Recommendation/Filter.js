@@ -20,7 +20,7 @@ class Filter {
     * @param {Array links} links to be rated
     */
     static titleFiltering(links) {
-        const regex = /./;
+        const regex = /(^.*\[.*$)|(^.*\<.*$)|(^\d*$)/;
         return links.filter( l => !l.match(regex) );
     }
 
