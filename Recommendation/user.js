@@ -35,12 +35,31 @@ class User {
         this._articlesVote[id] = 'down';
     }
 
-    addArticleSeen() {
-        const articlesContainer = (
-            (localStorage['WikiRec|articles'] == undefined) ?
+   /**
+    * Returns articles stored locally, {title1: {lastSeen, count}, ...}
+    * @param {string} keyWord local key of content to access
+    */
+    getStorage(keyWord) {
+        return ((localStorage[keyWord] == undefined) ?
             {} :
-            JSON.parse(localStorage['WikiRec|articles'])
+            JSON.parse(localStorage[keyWord])
         );
+    }
+
+    /**
+     * Updates local storage with content
+     * @param {string} keyWord local key of content to access
+     * @param {object} content object to store
+     */
+     setStorage(keyWord, content) {
+         localStorage[keyWord] = JSON.stringify(content);
+     }
+
+    /**
+     * Adds the current article page to the history in localStorage
+     */
+    addArticleSeen() {
+        const articlesContainer = this.getStorage('WikiRec|articles');
         const pageTitle = location.href.match(/wiki\/.*/i)[0].slice(5);
         if ( !(pageTitle in articlesContainer) ) {
             articlesContainer[pageTitle] = {"lastSeen": Date.now(), "count": 1 };
@@ -48,7 +67,7 @@ class User {
             articlesContainer[pageTitle]["lastSeen"] = Date.now();
             articlesContainer[pageTitle]["count"] += 1;
         }
-        localStorage['WikiRec|articles'] = JSON.stringify(articlesContainer);
+        this.setStorage('WikiRec|articles', articlesContainer);
     }
 }
 
