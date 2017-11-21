@@ -59,7 +59,7 @@ class User {
                 "lastSeen": Date.now(),
                 "title": currentArticle.title,
                 "link": location.href,
-                "categories": currentArticle.categories,
+                "categories": currentArticle.categoriesNames,
                 "count": 1,
                 "vote": 0
             };
