@@ -63,6 +63,7 @@ class User {
             this._articlesSeen[this.pageTitle].lastSeen = Date.now();
             this._articlesSeen[this.pageTitle].count += 1;
         }
+        console.log(this._articlesSeen);
         this.setStorage('WikiRec|articles', this._articlesSeen);
     }
 }
