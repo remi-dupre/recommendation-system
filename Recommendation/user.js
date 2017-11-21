@@ -52,8 +52,7 @@ class User {
      */
     addArticleSeen() {
         if ( !(this.pageTitle in this._articlesSeen) ) {
-            this._articlesSeen[this.pageTitle] = {"lastSeen": Date.now(), "count": 1, "vote": 0};
-            console.log(pageTitle + " is a new page.");
+            this._articlesSeen[this.pageTitle] = {"lastSeen": Date.now(), "count": 1, "vote": 0 };
         } else {
             this._articlesSeen[this.pageTitle].lastSeen = Date.now();
             this._articlesSeen[this.pageTitle].count += 1;
