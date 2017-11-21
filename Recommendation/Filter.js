@@ -9,10 +9,10 @@ class Filter {
         return contentBasedFiltering(
             popularityFiltering(
                 titleFiltering(
-                    links;
+                    links
                 )
             )
-        )
+        );
     }
 
     /**
@@ -20,8 +20,7 @@ class Filter {
     * @param {Array links} links to be rated
     */
     static titleFiltering(links) {
-        const regex = /(^.*\[.*$)|(^.*\<.*$)|(^\d*$)/;
-        return links.filter( l => !l.match(regex) );
+        return links.filter( l => !l.match(/(^.*\[.*$)|(^.*<.*$)/) );
     }
 
     /**
