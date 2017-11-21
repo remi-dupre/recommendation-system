@@ -24,7 +24,7 @@ class User {
      * Specify that the user downvoted the page.
      */
     downVoted() {
-        console.log('Upvoted the page');
+        console.log('Downvoted the page');
         this._articlesSeen[this.pageTitle].vote = -1;
         this.setStorage('Wikirec|articles', this._articlesSeen);
     }
@@ -54,7 +54,11 @@ class User {
      */
     addArticleSeen() {
         if ( !(this.pageTitle in this._articlesSeen) ) {
-            this._articlesSeen[this.pageTitle] = {"lastSeen": Date.now(), "count": 1, "vote": 0 };
+            this._articlesSeen[this.pageTitle] = {
+                "lastSeen": Date.now(), 
+                "count": 1, 
+                "vote": 0 
+            };
         } else {
             this._articlesSeen[this.pageTitle].lastSeen = Date.now();
             this._articlesSeen[this.pageTitle].count += 1;
