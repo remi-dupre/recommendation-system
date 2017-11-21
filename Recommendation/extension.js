@@ -21,10 +21,12 @@
 // @require      https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.9.0/bootstrap-slider.min.js
 // @resource     user-interface https://raw.githubusercontent.com/remi-dupre/recommendation-system/master/Recommendation/UI/user-interface.html
 // @require      https://raw.githubusercontent.com/remi-dupre/recommendation-system/master/Recommendation/Constants.js
+// @require      https://raw.githubusercontent.com/remi-dupre/recommendation-system/master/Recommendation/Category.js
+// @require      https://raw.githubusercontent.com/remi-dupre/recommendation-system/master/Recommendation/Filter.js
+// @require      https://raw.githubusercontent.com/remi-dupre/recommendation-system/master/Recommendation/Article.js
 // @require      https://raw.githubusercontent.com/remi-dupre/recommendation-system/master/Recommendation/HttpModule.js
 // @require      https://raw.githubusercontent.com/remi-dupre/recommendation-system/master/Recommendation/APIModule.js
 // @require      https://raw.githubusercontent.com/remi-dupre/recommendation-system/master/Recommendation/user.js
-// @require      https://raw.githubusercontent.com/remi-dupre/recommendation-system/master/Recommendation/api.js
 // @require      https://raw.githubusercontent.com/remi-dupre/recommendation-system/master/Recommendation/ui.js
 // @require      https://raw.githubusercontent.com/remi-dupre/recommendation-system/master/Recommendation/UI/userinterface.js
 // ==/UserScript==
