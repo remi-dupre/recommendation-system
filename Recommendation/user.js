@@ -4,10 +4,9 @@ class User {
      * @param {Array}  _articlesVote the votes we registered for know articles. It can be 'none', 'up' or 'down'.
      */
 
-    constructor(language) {
-        this.LANGUAGE = language;
-        this._articlesSeen = new Set();
-        this._articlesVote = {};
+    constructor() {
+        this._articlesSeen = this.getStorage('WikiRec|articles');
+        this._articlesVote = this.getStorage('WikiRec|votes');
     }
 
     /**
@@ -59,18 +58,17 @@ class User {
      * Adds the current article page to the history in localStorage
      */
     addArticleSeen() {
-        const articlesContainer = this.getStorage('WikiRec|articles');
         const pageTitle = location.href.match(/wiki\/.*/i)[0].slice(5);
-        if ( !(pageTitle in articlesContainer) ) {
-            articlesContainer[pageTitle] = {"lastSeen": Date.now(), "count": 1 };
+        if ( !(pageTitle in this._articlesSeen) ) {
+            this._articlesSeen[pageTitle] = {"lastSeen": Date.now(), "count": 1 };
         } else {
-            articlesContainer[pageTitle].lastSeen = Date.now();
-            articlesContainer[pageTitle].count += 1;
+            this._articlesSeen[pageTitle].lastSeen = Date.now();
+            this._articlesSeen[pageTitle].count += 1;
         }
-        this.setStorage('WikiRec|articles', articlesContainer);
+        this.setStorage('WikiRec|articles', this._articlesSeen);
     }
 }
 
 // Load user data from storage
-const user = new User('en');
+const user = new User();
 user.addArticleSeen();
