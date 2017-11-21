@@ -69,6 +69,6 @@ class APIModule extends HttpModule {
             handler(1 - (intersection / Math.min(categories[0].length, categories[1].length)));
         };
     }
-
-
 }
+
+const apiMod = new APIModule("en");

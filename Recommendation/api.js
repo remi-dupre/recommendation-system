@@ -1,5 +1,3 @@
-let apiMod = new APIModule("en");
-
 const testArticle = {
     title: "Michael Jackson",
     dateBeg: new Date(2017, 9, 22),
