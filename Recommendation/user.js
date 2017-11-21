@@ -1,7 +1,7 @@
 class User {
     /** Definition of a user. Articles will be identified with their names.
-     * @param {Set}    _articlesSeen the set of the articles seen so far.
-     * @param {Array}  _articlesVote the votes we registered for know articles. It can be 'none', 'up' or 'down'.
+     * @param {string}    _pagetitle title of the focused page, used as a key.
+     * @param {Object}    _articlesSeen the set of the articles seen so far.
      */
 
     constructor() {
@@ -15,6 +15,7 @@ class User {
      * Specify that the user upvoted the page.
      */
     upVoted() {
+        console.log('Upvoted the page');
         this._articlesSeen[this.pageTitle].vote = -1;
         this.setStorage('Wikirec|articles', this._articlesSeen);
     }
@@ -23,6 +24,7 @@ class User {
      * Specify that the user downvoted the page.
      */
     downVoted() {
+        console.log('Upvoted the page');
         this._articlesSeen[this.pageTitle].vote = 1;
         this.setStorage('Wikirec|articles', this._articlesSeen);
     }
