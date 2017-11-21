@@ -40,7 +40,7 @@ class User {
     * @param {string} keyWord local key of content to access
     */
     getStorage(keyWord) {
-        return ((localStorage[keyWord] == undefined) ?
+        return ((localStorage[keyWord] === undefined) ?
             {} :
             JSON.parse(localStorage[keyWord])
         );
@@ -64,13 +64,12 @@ class User {
         if ( !(pageTitle in articlesContainer) ) {
             articlesContainer[pageTitle] = {"lastSeen": Date.now(), "count": 1 };
         } else {
-            articlesContainer[pageTitle]["lastSeen"] = Date.now();
-            articlesContainer[pageTitle]["count"] += 1;
+            articlesContainer[pageTitle].lastSeen = Date.now();
+            articlesContainer[pageTitle].count += 1;
         }
         this.setStorage('WikiRec|articles', articlesContainer);
     }
 }
-
 
 // Load user data from storage
 const user = GM_getValue('userdata', new User());
