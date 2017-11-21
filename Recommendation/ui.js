@@ -10,6 +10,7 @@ $(document).ready(function() {
     // Link upvote and downvote buttons
     $('#btn-upvote').click(function(e) {
         e.preventDefault();
+        console.log(user);
         user.upVoted();
     });
 
