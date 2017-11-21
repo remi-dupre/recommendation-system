@@ -28,7 +28,7 @@ class Article {
                     this._page.getElementById("bodyContent").getElementsByTagName("p")
                 ).map( p => Array.from(p.getElementsByTagName("a")) )
             )
-            .reduce( (a, b) => a.concat(b) ).filter( l => l.className == "")
+            .reduce( (a, b) => a.concat(b) ).filter( l => l.innerHTML.className == "")
         );
     }
 
