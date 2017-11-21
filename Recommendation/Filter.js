@@ -6,10 +6,10 @@ class Filter {
     */
 
     static filter(links) {
-        return contentBasedFiltering(
-            popularityFiltering(
-                titleFiltering(
-                    links
+        return (
+            Filter.contentBasedFiltering(
+                Filter.popularityFiltering(
+                    Filter.titleFiltering(links)
                 )
             )
         );
