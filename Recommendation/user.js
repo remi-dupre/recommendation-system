@@ -54,8 +54,12 @@ class User {
      */
     addArticleSeen() {
         if ( !(this.pageTitle in this._articlesSeen) ) {
+            const currentArticle = new Article(document);
             this._articlesSeen[this.pageTitle] = {
                 "lastSeen": Date.now(),
+                "title": currentArticle.title,
+                "link": location.href,
+                "categories": currentArticle.categories,
                 "count": 1,
                 "vote": 0
             };
