@@ -6,7 +6,7 @@ class User {
 
     constructor() {
         this._pagetitle = location.href.match(/wiki\/.*/i)[0].slice(5);
-        this._articlesSeen = this.getStorage(Contants.STORAGE_ARTICLES);
+        this._articlesSeen = this.getStorage(Constants.STORAGE_ARTICLES);
     }
 
     get pageTitle() { return this._pagetitle; }
@@ -17,7 +17,7 @@ class User {
     upVoted() {
         console.log('Upvoted the page');
         this._articlesSeen[this.pageTitle].vote = 1;
-        this.setStorage(Contants.STORAGE_ARTICLES, this._articlesSeen);
+        this.setStorage(Constants.STORAGE_ARTICLES, this._articlesSeen);
     }
 
     /**
@@ -26,7 +26,7 @@ class User {
     downVoted() {
         console.log('Downvoted the page');
         this._articlesSeen[this.pageTitle].vote = -1;
-        this.setStorage(Contants.STORAGE_ARTICLES, this._articlesSeen);
+        this.setStorage(Constants.STORAGE_ARTICLES, this._articlesSeen);
     }
 
    /**
@@ -63,7 +63,7 @@ class User {
             this._articlesSeen[this.pageTitle].lastSeen = Date.now();
             this._articlesSeen[this.pageTitle].count += 1;
         }
-        this.setStorage(Contants.STORAGE_ARTICLES, this._articlesSeen);
+        this.setStorage(Constants.STORAGE_ARTICLES, this._articlesSeen);
     }
 }
 
