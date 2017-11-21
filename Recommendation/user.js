@@ -16,7 +16,7 @@ class User {
      */
     upVoted() {
         console.log('Upvoted the page');
-        this._articlesSeen[this.pageTitle].vote = -1;
+        this._articlesSeen[this.pageTitle].vote = 1;
         this.setStorage('Wikirec|articles', this._articlesSeen);
     }
 
@@ -25,7 +25,7 @@ class User {
      */
     downVoted() {
         console.log('Upvoted the page');
-        this._articlesSeen[this.pageTitle].vote = 1;
+        this._articlesSeen[this.pageTitle].vote = -1;
         this.setStorage('Wikirec|articles', this._articlesSeen);
     }
 
