@@ -20,7 +20,7 @@ class Filter {
     * @param {Array links} links to be rated
     */
     static titleFiltering(links) {
-        return links.filter( l => !l.innerHTML.match(/(^.*\[.*$)|(^.*<.*$)/) );
+        return links.filter( l => !l.innerHTML.match(/(^.*\[.*$)|(^.*<.*$)|(^\d+$)/) );
     }
 
     /**
