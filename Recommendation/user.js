@@ -5,33 +5,26 @@ class User {
      */
 
     constructor() {
+        this._pagetitle = location.href.match(/wiki\/.*/i)[0].slice(5);
         this._articlesSeen = this.getStorage('WikiRec|articles');
-        this._articlesVote = this.getStorage('WikiRec|votes');
     }
 
-    /**
-     * Specify that the user saw a specific page.
-     * @param {Int} id the id of the page.
-     */
-    watchedSeen(id) {
-        this._articlesSeen.push(id);
-        this._articlesVote[id] = 'none';
-    }
+    get pageTitle() { return this._pagetitle; }
 
     /**
      * Specify that the user upvoted the page.
-     * @param {Int} id the id of the page.
      */
-    upVoted(id) {
-        this._articlesVote[id] = 'up';
+    upVoted() {
+        this._articlesSeen[this.pageTitle].vote = -1;
+        this.setStorage('Wikirec|articles', this._articlesSeen);
     }
 
     /**
      * Specify that the user downvoted the page.
-     * @param {Int} id the id of the page.
      */
-    downVoted(id) {
-        this._articlesVote[id] = 'down';
+    downVoted() {
+        this._articlesSeen[this.pageTitle].vote = 1;
+        this.setStorage('Wikirec|articles', this._articlesSeen);
     }
 
    /**
@@ -58,12 +51,11 @@ class User {
      * Adds the current article page to the history in localStorage
      */
     addArticleSeen() {
-        const pageTitle = location.href.match(/wiki\/.*/i)[0].slice(5);
-        if ( !(pageTitle in this._articlesSeen) ) {
-            this._articlesSeen[pageTitle] = {"lastSeen": Date.now(), "count": 1 };
+        if ( !(this.pageTitle in this._articlesSeen) ) {
+            this._articlesSeen[this.pageTitle] = {"lastSeen": Date.now(), "count": 1, "vote": 0 };
         } else {
-            this._articlesSeen[pageTitle].lastSeen = Date.now();
-            this._articlesSeen[pageTitle].count += 1;
+            this._articlesSeen[this.pageTitle].lastSeen = Date.now();
+            this._articlesSeen[this.pageTitle].count += 1;
         }
         this.setStorage('WikiRec|articles', this._articlesSeen);
     }
