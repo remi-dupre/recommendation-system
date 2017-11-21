@@ -12,16 +12,14 @@ $(document).ready(function() {
         e.preventDefault();
 
         console.log('Upvoted the page');
-        user.upVoted(0);
-        GM_setValue('userdata', user);
+        user.upVoted();
     });
 
     $('#btn-downvote').click(function(e) {
         e.preventDefault();
 
         console.log('Downvoted the page.')
-        user.downVoted(0);
-        GM_setValue('userdata', user);
+        user.downVoted();
     });
 
     // Other buttons behaviour
