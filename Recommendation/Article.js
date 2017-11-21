@@ -10,6 +10,7 @@ class Article {
     get title() { return this._title; }
     get links() { return Array.from(this._links); }
     get categories() { return Array.from(this._categories); }
+    get categoriesNames() { return this.categories.map(c => c.title ); }
 
     /**
     * Gets page title from the HTML code
