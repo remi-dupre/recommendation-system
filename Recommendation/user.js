@@ -72,5 +72,5 @@ class User {
 }
 
 // Load user data from storage
-const user = GM_getValue('userdata', new User());
+const user = new User('en');
 user.addArticleSeen();
