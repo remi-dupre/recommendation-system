@@ -79,7 +79,6 @@ class Slideshow {
     delete() {
         const parent = document.getElementById("contentSub");
         parent.removeChild(this._HTMLelement);
-        this._images = [];
     }
 
     retrieveImage(link) {
@@ -104,9 +103,3 @@ class Slideshow {
 }
 
 let slideshow = new Slideshow();
-
-window.onresize = function(event) {
-    slideshow.delete();
-    slideshow._HTMLelement = slideshow.createDiv();
-    slideshow.update(art.links);
-};
