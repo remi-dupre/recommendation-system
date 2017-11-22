@@ -32,7 +32,7 @@ class APIModule extends HttpModule {
             const parser = new DOMParser();
             const doc = parser.parseFromString(page, "text/xml");
             let i = 0, imgDOM = doc.getElementById("mw-content-text").getElementsByTagName("img")[0];
-            while (imgDOM.offsetParent.className == "mbox-image") {
+            while (imgDOM.offsetParent && imgDOM.offsetParent.className == "mbox-image") {
                 i += 1;
                 imgDOM = doc.getElementById("mw-content-text").getElementsByTagName("img")[i];
             }
