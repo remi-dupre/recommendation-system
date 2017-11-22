@@ -31,6 +31,7 @@ class APIModule extends HttpModule {
         const pageGot = (page) => {
             const parser = new DOMParser();
             const doc = parser.parseFromString(page, "text/xml");
+            console.log(doc);
             let img = {
                 'src': doc.getElementById("mw-content-text").getElementsByTagName("img")[0].getAttribute('src'),
                 'title': doc.getElementById("firstHeading").innerHTML
