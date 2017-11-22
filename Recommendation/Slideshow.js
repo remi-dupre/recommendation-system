@@ -105,5 +105,5 @@ let slideshow = new Slideshow();
 
 window.onresize = function(event) {
     slideshow.delete();
-    slideshow = new Slideshow();
+    slideshow.update(art.links);
 };

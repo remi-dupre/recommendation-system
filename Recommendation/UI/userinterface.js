@@ -25,13 +25,4 @@ function setup() {
   div.child(slider);
   slider.position(30,150);
 
-
-  var article_button = new Array(3);
-  for (var i = 0; i < 3; i++) {
-  	article_button[i] = createButton("article"+(i+1));
-  	div.child(article_button[i]);
-
-  	article_button[i].position(30+i*110,200);
-  };
-
 }
