@@ -54,7 +54,25 @@ class HttpModule {
         );
     }
 
-     /** Send a query to the main API.
+    /** Send a query to the main API.
+    *  @param {string} url the target url
+    */
+   sendRawQuery(url, handle) {
+
+       let xmlHttp = new XMLHttpRequest();
+       xmlHttp.onreadystatechange = function() {
+           if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+               --this.queriesCount;
+               handle(xmlHttp.responseText);
+           }
+
+       }
+       xmlHttp.open("GET", url, true);
+       xmlHttp.send(null);
+       ++this.queriesCount;
+   };
+
+     /** Send a JSON query to the main API.
      *  @param {string} url the target url
      */
     sendQuery(url, handle) {

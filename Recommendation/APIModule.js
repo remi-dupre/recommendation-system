@@ -27,6 +27,22 @@ class APIModule extends HttpModule {
         }));
     };
 
+    retrieveImage({link, callback}) {
+        const pageGot = (page) => {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(page, "text/xml");
+            console.log(doc);
+            let img = {
+                'src': doc.getElementById("mw-content-text").getElementsByTagName("img")[0].getAttribute('src'),
+                'title': doc.getElementById("firstHeading").innerHTML
+            };
+
+            callback( (img.src === undefined) ? null : img );
+        }
+
+        this.sendRawQuery(link, pageGot);
+    }
+
     /** Get specific parameter for a given article
      * @param {string} title the title of the article
      * @param {string} key the key we want informations about
