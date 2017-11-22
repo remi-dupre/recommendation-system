@@ -71,7 +71,7 @@ class Slideshow {
         parent.appendChild(div);
 
         this._maxSlides = parseInt(div.offsetWidth / 162);
-        this._imgWidth = parseInt(div.offsetWidth / this._maxSlides);
+        this._imgWidth = parseInt(div.offsetWidth / this._maxSlides) - 1;
 
         return div;
     }
