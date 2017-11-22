@@ -150,7 +150,7 @@
 }
 
 .slider {
-    width: 100% !important;
+    width: 70% !important;
 }
 
 /*---------------------*/
@@ -172,7 +172,7 @@
     box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
     border-radius: 8px;
     content: '';
-    height: 14px;
+    height: 16px;
     margin-top: -8px;
     position:absolute;
     opacity: 0.3;
