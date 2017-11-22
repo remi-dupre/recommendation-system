@@ -31,9 +31,13 @@ class APIModule extends HttpModule {
         const pageGot = (page) => {
             const parser = new DOMParser();
             const doc = parser.parseFromString(page, "text/xml");
-            console.log(doc);
+            let i = 0, imgDOM = doc.getElementById("mw-content-text").getElementsByTagName("img")[0];
+            while (imgDOM.offsetParent.className == "mbox-image") {
+                i += 1;
+                imgDOM = doc.getElementById("mw-content-text").getElementsByTagName("img")[i];
+            }
             let img = {
-                'src': doc.getElementById("mw-content-text").getElementsByTagName("img")[0].getAttribute('src'),
+                'src': imgDOM.getAttribute('src'),
                 'title': doc.getElementById("firstHeading").innerHTML
             };
 
