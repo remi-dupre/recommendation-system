@@ -18,6 +18,10 @@ $(document).ready(function() {
         user.downVoted();
     });
 
+    $('btn-refresh').click(function(e) {
+        Recommender.mind();
+    });
+
     $('#serendipity').slider({
     	formatter: function(value) {
     		return 'Serendipity value: ' + value;
