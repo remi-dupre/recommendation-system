@@ -18,7 +18,7 @@ class Slideshow {
             divDOM.style.backgroundImage = "url('" + img.img + "')";
             divDOM.style.height = "100px";
             divDOM.style.width = this._imgWidth + "px";
-            divDOM.style.backgroundPosition = "center center";
+            divDOM.style.backgroundPosition = "center 30%";
             divDOM.style.backgroundRepeat = "no-repeat";
             divDOM.style.cursor = "pointer";
             divDOM.style.display = "inline-block";
