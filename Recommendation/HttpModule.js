@@ -59,8 +59,6 @@ class HttpModule {
      */
     sendQuery(url, handle) {
 
-        console.info("Sending request to", url);
-
         let xmlHttp = new XMLHttpRequest();
         xmlHttp.onreadystatechange = function() {
             if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {

@@ -14,15 +14,16 @@ class APIModule extends HttpModule {
     * @param {string} title the title of the article
     * @param {Date} dateBeg beginning of the time period
     * @param {Date} dateEnd end of the time period
+    * @param {function} callback to be called on views (int)
     */
-    getViews({title, dateBeg, dateEnd}) {
+    getViews({title, dateBeg, dateEnd, callback}) {
         this._getViews(title, dateBeg, dateEnd, ( jsonparsed => {
             const views = Object.values(jsonparsed)[0].map(
                 obj => obj.views
             ).reduce(
                 (a, b) => a + b, 0
             );
-            console.log(views);
+            callback(views);
         }));
     };
 

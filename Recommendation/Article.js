@@ -9,6 +9,7 @@ class Article {
 
     get title() { return this._title; }
     get links() { return Array.from(this._links); }
+    set links(links) { this._links = Array.from(links); }
     get categories() { return Array.from(this._categories); }
     get categoriesNames() { return this.categories.map(c => c.title ); }
 
@@ -29,7 +30,19 @@ class Article {
                     this._page.getElementById("bodyContent").getElementsByTagName("p")
                 ).map( p => Array.from(p.getElementsByTagName("a")) )
             )
-            .reduce( (a, b) => a.concat(b) ).filter( l => l.innerHTML.className == "")
+            .reduce( (a, b) => a.concat(b) ).filter( l => l.className == "")
+            .map(
+                a => {
+                    return {
+                        "name": a.href.match(/wiki\/.*/i)[0].slice(5),
+                        "href": a.href,
+                        "innerHTML": a.innerHTML
+                    };
+                }
+            )
+            .sort(
+                (a, b) => (a.name < b.name) ? -1 : 1
+            )
         );
     }
 
@@ -49,7 +62,9 @@ class Article {
     * @param {Array of links} links to be filtered
     */
     filter(links) {
-        return Filter.filter(links);
+        return Filter.filter(links, this);
     }
 
 }
+
+const art = new Article(document);
