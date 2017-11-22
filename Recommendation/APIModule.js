@@ -30,10 +30,14 @@ class APIModule extends HttpModule {
     retrieveImage({link, callback}) {
         const pageGot = (page) => {
             const parser = new DOMParser();
-            const doc = parser.parseFromString(page, "text/xml");
-            console.log(doc);
+            let doc = parser.parseFromString(page, "text/xml");
+            if (doc.getElementsByClassName("infobox")[0] !== undefined) {
+                doc = doc.getElementsByClassName("infobox")[0];
+            } else {
+                doc = doc.getElementById("mw-content-text");
+            }
             let img = {
-                'src': doc.getElementById("mw-content-text").getElementsByTagName("img")[0].getAttribute('src'),
+                'src': doc.getElementsByTagName("img")[0].getAttribute('src'),
                 'title': doc.getElementById("firstHeading").innerHTML
             };
 
