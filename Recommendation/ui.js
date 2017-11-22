@@ -18,7 +18,7 @@ $(document).ready(function() {
         user.downVoted();
     });
 
-    $('btn-refresh').click(function(e) {
+    $('#btn-refresh').click(function(e) {
         Recommender.mind();
     });
 
