@@ -29,5 +29,13 @@ $(document).ready(function() {
         tooltip_position: 'bottom'
     });
 
+    $('#serendipity').slider({
+    	formatter: function(value) {
+    		return 'Serendipity value: ' + value;
+    	},
+        tooltip_position: 'bottom'
+    });
+
     $('[data-toggle="tooltip"]').tooltip();
+
 });
