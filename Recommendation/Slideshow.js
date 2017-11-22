@@ -45,7 +45,7 @@ class Slideshow {
         const upper_lane = document.createElement('div');
         this._HTMLelement.appendChild(upper_lane);
 
-        upper_lane.innerHTML = "Pages you may like..."
+        upper_lane.innerHTML = "Pages you may be interested in..."
         upper_lane.style.textAlign = "center";
         upper_lane.style.padding = "1px";
         upper_lane.style.color = "white";
@@ -71,7 +71,7 @@ class Slideshow {
         parent.appendChild(div);
 
         this._maxSlides = parseInt(div.offsetWidth / 162);
-        this._imgWidth = parseInt(div.offsetWidth / this._maxSlides) - 1;
+        this._imgWidth = parseInt(div.offsetWidth / this._maxSlides);
 
         return div;
     }
@@ -79,6 +79,7 @@ class Slideshow {
     delete() {
         const parent = document.getElementById("contentSub");
         parent.removeChild(this._HTMLelement);
+        this._images = [];
     }
 
     retrieveImage(link) {
