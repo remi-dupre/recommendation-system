@@ -78,6 +78,7 @@ class Slideshow {
     delete() {
         const parent = document.getElementById("contentSub");
         parent.removeChild(this._HTMLelement);
+        this._images = [];
     }
 
     retrieveImage(link) {
