@@ -19,6 +19,7 @@ class Slideshow {
             divDOM.style.height = "100px";
             divDOM.style.width = this._imgWidth + "px";
             divDOM.style.backgroundPosition = "center center";
+            divDOM.style.backgroundRepeat = "no-repeat";
             divDOM.style.cursor = "pointer";
             divDOM.style.display = "inline-block";
             divDOM.onclick = () => { location.href = img.href; }
@@ -106,5 +107,6 @@ let slideshow = new Slideshow();
 
 window.onresize = function(event) {
     slideshow.delete();
+    slideshow._HTMLelement = slideshow.createDiv();
     slideshow.update(art.links);
 };
