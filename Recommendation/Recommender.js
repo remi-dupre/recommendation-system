@@ -136,7 +136,7 @@ class Recommender {
                     }
                 }
             ).filter(
-                l => !(l.name in ["Main_Page", "Special:Search", "Special:PasswordReset"] )
+                l => !(l.name in ["Main_Page", "Special:Search", "Special:PasswordReset", "Special:BookSources"] )
             );
         };
 
