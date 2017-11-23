@@ -11,7 +11,7 @@ class Recommender {
 
         const addArticle = (article, articleText, container) => {
             this._articlesCount += 1;
-            article.text = articleText;
+            article.text = articleText.substr(0, Constants.MAX_TEXT_SIZE);
             container.push(article);
         }
         const candidates = Object.values(user.getStorage(Constants.STORAGE_ARTICLES));
@@ -47,7 +47,8 @@ class Recommender {
 
         const gotArticleText = (articleText) => {
 
-            let answers = 0, min_val = Infinity, returned = false;
+            let answers = 0, min_val = Infinity, returned = false, length = this._articlesCount;
+            articleText = articleText.substr(0, Constants.MAX_TEXT_SIZE);
 
             // Callback functions
 
@@ -55,8 +56,9 @@ class Recommender {
                 if (returned) return;
                 answers += 1;
                 min_val = Math.min(min_val, Number(dist));
-                if (answers == this._visitedArticles.concat(this._likedArticles).length) {
+                if (answers == length) {
                     callback(min_val);
+                    returned = true;
                     return;
                 }
             }
@@ -64,8 +66,9 @@ class Recommender {
             const errorFunction = (dist) => {
                 if (returned) return;
                 answers += 1;
-                if (answers == this._visitedArticles.concat(this._likedArticles).length) {
+                if (answers == length) {
                     callback(min_val);
+                    returned = true;
                     return;
                 }
             }
