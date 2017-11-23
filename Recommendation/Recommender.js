@@ -1,19 +1,49 @@
 class Recommender {
 
     constructor() {
-        this._chosenArticles = [];
+        this._articlesCount = 0;
+        this._likedArticles = [];
+        this._visitedArticles = [];
+        this.loadArticles();
+    }
+
+    loadArticles() {
+
+        const addArticle = (article, articleText, container) => {
+            this._articlesCount += 1;
+            article.text = articleText;
+            container.push(article);
+        }
+        const candidates = Object.values(user.getStorage(Constants.STORAGE_ARTICLES));
+
+        for (let article of candidates) {
+            const container = (article.vote == 1) ? this._likedArticles : (article.vote == 0) ? this._visitedArticles : null;
+            if (container === null) continue; // Disliked article
+            apiMod.retrieveText(article.link, (articleText) => { addArticle(article, articleText, container); });
+        }
+
     }
 
     /**
      * Estimate how it is relevant to choose an article.
      */
-    static estimate(link, callback) {
+    estimate(link, callback) {
+
+        // If articles aren't loaded, we wait
+        if (this._articlesCount == 0) {
+            let that = this;
+            setTimeout(() => { that.estimate(link, callback); }, 3000);
+            return;
+        }
 
         // We check if the user already saw this page1
         if ( Object.values(user.getStorage(Constants.STORAGE_ARTICLES)).map(
             l => l.link
-        ).includes(link) )
+        ).includes(link) ) {
             callback(Infinity);
+            return;
+        }
+
 
         const gotArticleText = (articleText) => {
 
@@ -25,19 +55,22 @@ class Recommender {
                 if (returned) return;
                 answers += 1;
                 min_val = Math.min(min_val, Number(dist));
-                if (answers == candidates.length)
-                   callback(min_val);
+                if (answers == this._visitedArticles.concat(this._likedArticles).length) {
+                    callback(min_val);
+                    return;
+                }
             }
 
             const errorFunction = (dist) => {
                 if (returned) return;
                 answers += 1;
-                if (answers == candidates.length) {}
-                   callback(min_val);
+                if (answers == this._visitedArticles.concat(this._likedArticles).length) {
+                    callback(min_val);
+                    return;
+                }
             }
 
             const dist_url = 'https://whoping.fr:8080/text/dist'; // Url to get the distance
-            const candidates = Object.values(user.getStorage(Constants.STORAGE_ARTICLES)).map(x => x.link);
 
             const compareArticles = (retrievedText) => {
                 $.post({
@@ -51,11 +84,15 @@ class Recommender {
 
             // Already visited articles comparison
 
-            for (let visitedArticle of candidates) {
-                apiMod.retrieveText(visitedArticle, compareArticles);
+            for (let visitedArticle of this._visitedArticles.concat(this._likedArticles)) {
+                compareArticles(visitedArticle.text);
             }
 
-            setTimeout(() => { returned = true; callback(min_val); }, 3000);
+            setTimeout(() => {
+                if (returned) return;
+                returned = true;
+                callback(min_val);
+             }, 3000);
 
         }
 
