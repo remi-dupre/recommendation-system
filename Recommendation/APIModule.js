@@ -31,14 +31,15 @@ class APIModule extends HttpModule {
         const pageGot = (page) => {
             const parser = new DOMParser();
             const doc = parser.parseFromString(page, "text/xml");
-            const div_img = doc.querySelector("div.thumbinner");
 
-            let imgDOM = div_img ? div_img.firstElementChild.firstElementChild : null;
+            let infobox = $(page).find('.infobox').find("img:not(.thumbborder)");
 
-            // while (imgDOM.offsetParent && imgDOM.offsetParent.className == "mbox-image") {
-            //     i += 1;
-            //     imgDOM = a_imgs[i];
-            // }
+            imgDOM = infobox.length ? infobox[0] : null;
+
+            if (!imgDOM) {
+                let div_img = doc.querySelector("div.thumbinner");
+                let imgDOM = div_img ? div_img.firstElementChild.firstElementChild : null;
+            }
 
             let src =  imgDOM ? imgDOM.getAttribute('src') : "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/P_wiki_letter_w.svg/200px-P_wiki_letter_w.svg.png";
 
