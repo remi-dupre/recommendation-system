@@ -9,7 +9,7 @@ class Article {
 
     get title() { return this._title; }
     get links() { return Array.from(this._links); }
-    set links(links) { this._links = Array.from(links); slideshow.update(links); }
+    set links(links) { this._links = Array.from(links); }
     get categories() { return Array.from(this._categories); }
     get categoriesNames() { return this.categories.map(c => c.title ); }
 
