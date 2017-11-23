@@ -40,7 +40,7 @@ class APIModule extends HttpModule {
             //     imgDOM = a_imgs[i];
             // }
 
-            let src =  imgDOM ? imgDOM.getAttribute('src') : "https://upload.wikimedia.org/wikipedia/en/thumb/6/6c/Wiki_letter_w.svg/768px-Wiki_letter_w.svg.png";
+            let src =  imgDOM ? imgDOM.getAttribute('src') : "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/P_wiki_letter_w.svg/200px-P_wiki_letter_w.svg.png";
 
             let img = {
                 'src': src,
