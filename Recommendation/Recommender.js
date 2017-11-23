@@ -39,7 +39,7 @@ class Recommender {
         // We check if the user already saw this page1
         if ( Object.values(user.getStorage(Constants.STORAGE_ARTICLES)).map(
             l => l.link
-        ).includes(link) ) {
+        ).includes(link) || this._chosenArticles.includes(link) ) {
             callback(Infinity);
             return;
         }
@@ -102,27 +102,23 @@ class Recommender {
         apiMod.retrieveText(link, gotArticleText);
     }
 
-    static mind() {
+    mind() {
+
+        // If articles aren't loaded, we wait
+        if (this._articlesCount == 0) {
+            let that = this;
+            setTimeout(() => { that.mind(); }, 3000);
+            return;
+        }
 
         this._chosenArticles = [];
 
-        const likedArticles = [];
-        const neutralArticles = [];
+        //const serendipityCoin = Number($('#serendipity')[0].value) / 20;
 
-        for (let key in user.getStorage(Constants.STORAGE_ARTICLES)) {
-            if (seenArticles[key].vote == 1) {
-                likedArticles.push(seenArticles[key]);
-            } else {
-                neutralArticles.push(seenArticles[key]);
-            }
-        }
+        let mostViewedArticles = [];
 
-        const currentArticle = new Article(document);
-        const serendipityCoin = 0.5;
-
-        const choseArticle = (articles) => {
-
-            const links = articles.items[0].articles.splice(
+        const updateMostViewed = (articles) => {
+            mostViewedArticles = articles.items[0].articles.splice(
                 Constants.MOST_VIEWED_TOTAL - Constants.MOST_VIEWED_COUNT
             ).map(
                 a => {
@@ -132,19 +128,39 @@ class Recommender {
                     }
                 }
             ).filter(
-                !(l.name in ["Main_Page", "Special:Search"] )
+                l => !(l.name in ["Main_Page", "Special:Search"] )
             );
+        };
 
-            slideshow.update(chosenArticle.link);
+        apiMod.getMostViewedArticles(updateMostViewed);
+
+        const pickMostViewedArticle = () => {
+
+            if (mostViewedArticles.length == 0) {
+                setTimeout( pickMostViewedArticle, 1000 );
+                return;
+            }
+
+            let coin = parseInt(Math.random() * Constants.MOST_VIEWED_COUNT)
+
+            this._chosenArticles.push(mostViewedArticles[coin]);
+            mostViewedArticles.splice(coin, 1);
+
+            if (this._chosenArticles.length == slideshow._maxSlides) {
+                slideshow.update(this._chosenArticles);
+            }
         }
 
         for (let i = 0; i < slideshow._maxSlides; i++) {
-            if (Math.random() < serendipityCoin) {
+            if (Math.random() < 1) {
                 // Global
-                const mostViewedArticles = apiMod.getMostViewedArticles(choseArticle);
+                pickMostViewedArticle();
             } else {
                 // Personal
             }
         }
     }
 }
+
+let rec = new Recommender();
+rec.mind();
