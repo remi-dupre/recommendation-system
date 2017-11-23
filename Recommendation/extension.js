@@ -1,3 +1,4 @@
+
 // ==UserScript==
 // @name         Wikiex
 // @namespace    http://tampermonkey.net/
@@ -25,6 +26,7 @@
 // @require      https://raw.githubusercontent.com/remi-dupre/recommendation-system/master/Recommendation/Filter.js
 // @require      https://raw.githubusercontent.com/remi-dupre/recommendation-system/master/Recommendation/Article.js
 // @require      https://raw.githubusercontent.com/remi-dupre/recommendation-system/master/Recommendation/user.js
+// @require      https://raw.githubusercontent.com/remi-dupre/recommendation-system/master/Recommendation/Recommender.js
 // @require      https://raw.githubusercontent.com/remi-dupre/recommendation-system/master/Recommendation/ui.js
 // @require      https://raw.githubusercontent.com/remi-dupre/recommendation-system/master/Recommendation/UI/userinterface.js
 // ==/UserScript==
