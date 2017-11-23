@@ -18,7 +18,11 @@ class Recommender {
             article.text = $(raw).find('p').text().replace(/\[\d*\]/g, '').substr(0, Constants.MAX_TEXT_SIZE);
             container.push(article);
         }
-        const candidates = Object.values(user.getStorage(Constants.STORAGE_ARTICLES));
+        const allArticles = Object.values(user.getStorage(Constants.STORAGE_ARTICLES));
+        const candidates = (allArticles.some( l => l.vote == 1)) ? allArticles.filter( l => l.vote == 1) : allArticles.filter( l => l.vote == 0);
+        while (candidates.length && candidates[0].vote == 0 && candidates.length > 5) {
+            candidates.splice( parseInt(Math.random() * candidates.length), 1 );
+        }
 
         for (let article of candidates) {
             const container = (article.vote == 1) ? this._likedArticles : (article.vote == 0) ? this._visitedArticles : null;
@@ -200,7 +204,7 @@ class Recommender {
 
             for (let i=0; i < 5; i++) {
                 const link = links[parseInt(Math.random() * links.length)];
-                if (this._chosenArticles.map(l => l.href).includes(link.href) || 
+                if (this._chosenArticles.map(l => l.href).includes(link.href) ||
                     Object.values(user.getStorage(Constants.STORAGE_ARTICLES)).map( l => l.link.substr(24, 100)).includes(link.href)) continue;
                 console.log('[' + funcID + '] requesting for ' + link.href + '.');
                 apiMod.distanceFromNames(link.name, baseTitle, (distance) => { checkDistance(link, distance); });
