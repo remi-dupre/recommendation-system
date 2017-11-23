@@ -119,7 +119,7 @@ class Recommender {
 
         this._chosenArticles = [];
 
-        //const serendipityCoin = Number($('#serendipity')[0].value) / 20;
+        const serendipityCoin = Number($('#serendipity')[0].value) / 20;
 
         ///////////////////////// SERENDIPITY PART /////////////////////////
 
@@ -210,7 +210,7 @@ class Recommender {
         }
 
         for (let i = 0; i < slideshow._maxSlides; i++) {
-            if (Math.random() < 0) {
+            if (Math.random() < serendipityCoin) {
                 // Global
                 pickMostViewedArticle();
             } else {
