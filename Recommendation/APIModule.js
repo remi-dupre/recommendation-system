@@ -63,6 +63,10 @@ class APIModule extends HttpModule {
 
         this.sendRawQuery(link, pageGot);
     };
+    
+    getMostViewedArticles(callback) {
+        this._getMostViewedArticles(callback);
+    }
 
     /** Get specific parameter for a given article
      * @param {string} title the title of the article
