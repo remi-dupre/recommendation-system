@@ -171,6 +171,8 @@ class Recommender {
         const choseBestLink = (baseTitle, links) => {
 
             if (choseBestLinkCount > slideshow._maxSlides) return;
+            
+            console.log(choseBestLinkCount);
 
             choseBestLinkCount++;
             if (this._chosenArticles >= slideshow._maxSlides) return;
