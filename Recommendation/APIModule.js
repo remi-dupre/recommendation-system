@@ -31,9 +31,9 @@ class APIModule extends HttpModule {
         const pageGot = (page) => {
             const parser = new DOMParser();
             const doc = parser.parseFromString(page, "text/xml");
-            const a_img = doc.querySelector("a.image");
+            const div_img = doc.querySelector("div.thumbinner");
 
-            let imgDOM = a_img ? a_img.firstElementChild : null;
+            let imgDOM = div_img ? div_img.firstElementChild.firstElementChild : null;
 
             // while (imgDOM.offsetParent && imgDOM.offsetParent.className == "mbox-image") {
             //     i += 1;
