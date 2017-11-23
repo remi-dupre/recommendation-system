@@ -53,6 +53,13 @@ class HttpModule {
             handle
         );
     }
+    
+    _getMostViewedArticles(callback) {
+        this.sendQuery(
+            Constants.MOST_VIEWED_URL + Constants.DATE_BEG.getFullYear() + '/' + (Constants.DATE_BEG.getMonth() + 1) + '/' + Constants.DATE_BEG.getUTCDate(),
+            callback
+        );
+    }
 
     /** Send a query to the main API.
     *  @param {string} url the target url
