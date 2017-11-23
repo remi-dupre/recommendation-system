@@ -17,7 +17,7 @@ const Constants = {
     DATE_END : now,
 
     // Filter max selections
-    SECOND_PASS_CANDIDATES: 20
+    SECOND_PASS_CANDIDATES: 20,
 
     // Most viewed articles _imagesCount
     MOST_VIEWED_COUNT: 50,
