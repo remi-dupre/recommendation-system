@@ -34,11 +34,11 @@ class APIModule extends HttpModule {
 
             let infobox = $(page).find('.infobox').find("img:not(.thumbborder)");
 
-            imgDOM = infobox.length ? infobox[0] : null;
+            let imgDOM = infobox.length ? infobox[0] : null;
 
             if (!imgDOM) {
                 let div_img = doc.querySelector("div.thumbinner");
-                let imgDOM = div_img ? div_img.firstElementChild.firstElementChild : null;
+                imgDOM = div_img ? div_img.firstElementChild.firstElementChild : null;
             }
 
             let src =  imgDOM ? imgDOM.getAttribute('src') : "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/P_wiki_letter_w.svg/200px-P_wiki_letter_w.svg.png";
