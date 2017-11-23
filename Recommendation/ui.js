@@ -19,6 +19,12 @@ $(document).ready(function() {
     });
 
     $('#btn-refresh').click(function(e) {
+        $(this).addClass("spinning");
+
+        setTimeout(function() {
+            $(this).removeClass("spinning");
+        }.bind(this), 1000);
+
         rec.mind();
     });
 
