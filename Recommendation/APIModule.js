@@ -108,9 +108,25 @@ class APIModule extends HttpModule {
                 (acc, elem) =>  acc + (categories_1_titles.includes(elem) ? 1 : 0),
                 0
             );
-            handler(1 - (intersection / Math.min(categories[0].length, categories[1].length)));
+            handler(1 - (intersection / (1 + Math.min(categories[0].length, categories[1].length))));
         };
     }
+
+    distanceFromNames(name1, name2, handler) {
+
+        const ids = [];
+
+        const idGot = (id) => {
+            ids.push(id);
+            if (ids.length == 2) {
+                this.distance(ids[0], ids[1], handler);
+                return;
+            }
+        }
+        this.getId(name1, idGot);
+        this.getId(name2, idGot);
+    }
 }
+
 
 const apiMod = new APIModule("en");

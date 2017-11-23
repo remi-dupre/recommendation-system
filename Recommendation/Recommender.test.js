@@ -121,6 +121,19 @@ class HttpModule {
         xmlHttp.send(null);
         ++this.queriesCount;
     };
+
+    getId(name, callback) {
+
+        const pageGot = (page) => {
+            const d = new DOMParser();
+            const doc = d.parseFromString(page, 'text/xml');
+            callback(
+                doc.getElementById('mw-pageinfo-article-id').getElementsByTagName('td')[1].innerHTML
+            );
+        }
+
+        this.sendRawQuery("https://en.wikipedia.org/w/index.php?title=[[name]]&action=info".replace("[[name]]", name), pageGot);
+    }
 }
 
 class APIModule extends HttpModule {
@@ -233,10 +246,26 @@ class APIModule extends HttpModule {
                 (acc, elem) =>  acc + (categories_1_titles.includes(elem) ? 1 : 0),
                 0
             );
-            handler(1 - (intersection / Math.min(categories[0].length, categories[1].length)));
+            handler(1 - (intersection / (1 + Math.min(categories[0].length, categories[1].length))));
         };
     }
+
+    distanceFromNames(name1, name2, handler) {
+
+        const ids = [];
+
+        const idGot = (id) => {
+            ids.push(id);
+            if (ids.length == 2) {
+                this.distance(ids[0], ids[1], handler);
+                return;
+            }
+        }
+        this.getId(name1, idGot);
+        this.getId(name2, idGot);
+    }
 }
+
 
 const apiMod = new APIModule("en");
 
@@ -812,9 +841,35 @@ class Recommender {
 
         ///////////////////////// COMFORT ZONE PART /////////////////////////
 
-        const choseBestLink = (links) => {
+        const choseBestLink = (baseTitle, links) => {
+            console.log("a");
             if (this._chosenArticles >= slideshow._maxSlides) return;
-            this._chosenArticles.push(link(0));
+
+            let best_link = null, best_distance = Infinity;
+            const checkDistance = (link, distance) => {
+                if (distance < best_distance) {
+                    best_distance = distance;
+                    best_link = link;
+                }
+            }
+            for (let link of links) {
+                if (this._chosenArticles.map(l => l.href).includes(link.href)) continue;
+
+                apiMod.distanceFromNames(link.name, baseTitle, (distance) => { checkDistance(link, distance); });
+            }
+
+            const end = () => {
+                if (this._chosenArticles.length < slideshow._maxSlides && best_link == null) {
+                    pickPersonalArticle();
+                    return;
+                }
+                this._chosenArticles.push(best_link);
+                if (this._chosenArticles.length == slideshow._maxSlides) {
+                    slideshow.update(this._chosenArticles);
+                }
+            }
+
+            setTimeout( end, 3000 );
         }
 
         const pickPersonalArticle = () => {
@@ -826,8 +881,7 @@ class Recommender {
             }
 
             const tmp = articlesList[parseInt(Math.random() * articlesList.length)];
-            const chosenStartingArticle = new Article(tmp.dom, tmp.link, choseBestLink);
-            console.log(chosenStartingArticle);
+            const chosenStartingArticle = new Article(tmp.dom, tmp.link, (links) => { choseBestLink(tmp.link.match(/wiki\/.*/i)[0].slice(5), links); });
         }
 
         for (let i = 0; i < slideshow._maxSlides; i++) {

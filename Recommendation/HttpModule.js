@@ -95,4 +95,18 @@ class HttpModule {
         xmlHttp.send(null);
         ++this.queriesCount;
     };
+
+    getId(name, callback) {
+
+        const pageGot = (page) => {
+            const d = new DOMParser();
+            const doc = d.parseFromString(page, 'text/xml');
+            if (doc.getElementById('mw-pageinfo-article-id') === null) return;
+            callback(
+                doc.getElementById('mw-pageinfo-article-id').getElementsByTagName('td')[1].innerHTML
+            );
+        }
+
+        this.sendRawQuery("https://en.wikipedia.org/w/index.php?title=[[name]]&action=info".replace("[[name]]", name), pageGot);
+    }
 }

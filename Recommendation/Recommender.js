@@ -119,7 +119,7 @@ class Recommender {
 
         this._chosenArticles = [];
 
-        const serendipityCoin = Number($('#serendipity')[0].value) / 20;
+        //const serendipityCoin = Number($('#serendipity')[0].value) / 20;
 
         ///////////////////////// SERENDIPITY PART /////////////////////////
 
@@ -166,12 +166,35 @@ class Recommender {
 
         ///////////////////////// COMFORT ZONE PART /////////////////////////
 
-        const choseBestLink = (links) => {
+        const choseBestLink = (baseTitle, links) => {
+            console.log("a");
             if (this._chosenArticles >= slideshow._maxSlides) return;
-            this._chosenArticles.push(links[0]);
-            if (this._chosenArticles.length == slideshow._maxSlides) {
-                slideshow.update(this._chosenArticles);
+
+            let best_link = null, best_distance = Infinity;
+            const checkDistance = (link, distance) => {
+                if (distance < best_distance) {
+                    best_distance = distance;
+                    best_link = link;
+                }
             }
+            for (let link of links) {
+                if (this._chosenArticles.map(l => l.href).includes(link.href)) continue;
+
+                apiMod.distanceFromNames(link.name, baseTitle, (distance) => { checkDistance(link, distance); });
+            }
+
+            const end = () => {
+                if (this._chosenArticles.length < slideshow._maxSlides && best_link == null) {
+                    pickPersonalArticle();
+                    return;
+                }
+                this._chosenArticles.push(best_link);
+                if (this._chosenArticles.length == slideshow._maxSlides) {
+                    slideshow.update(this._chosenArticles);
+                }
+            }
+
+            setTimeout( end, 5000 );
         }
 
         const pickPersonalArticle = () => {
@@ -183,12 +206,11 @@ class Recommender {
             }
 
             const tmp = articlesList[parseInt(Math.random() * articlesList.length)];
-            const chosenStartingArticle = new Article(tmp.dom, tmp.link, choseBestLink);
-            console.log(chosenStartingArticle);
+            const chosenStartingArticle = new Article(tmp.dom, tmp.link, (links) => { choseBestLink(tmp.link.match(/wiki\/.*/i)[0].slice(5), links); });
         }
 
         for (let i = 0; i < slideshow._maxSlides; i++) {
-            if (Math.random() < serendipityCoin) {
+            if (Math.random() < 0) {
                 // Global
                 pickMostViewedArticle();
             } else {
