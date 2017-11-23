@@ -150,7 +150,7 @@
 }
 
 .slider {
-    width: 60% !important;
+    width: 55% !important;
 }
 
 /*---------------------*/
@@ -357,7 +357,6 @@
 }
 
 .btn-toggle.btn-sm {
-    margin: 0 0.5rem;
     padding: 0;
     position: relative;
     border: none;
