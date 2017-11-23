@@ -1,0 +1,255 @@
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+
+.carousel-control {
+    width: 4%;
+}
+
+.carousel-control.left, .carousel-control.right {
+    margin-left: 15px;
+    background-image: none;
+}
+
+@media (max-width: 767px) {
+    .carousel-inner .active.left {
+        left: -100%;
+    }
+    .carousel-inner .next {
+        left: 100%;
+    }
+    .carousel-inner .prev {
+        left: -100%;
+    }
+    .active>div {
+        display: none;
+    }
+    .active>div:first-child {
+        display: block;
+    }
+}
+
+@media (min-width: 767px) and (max-width: 992px) {
+    .carousel-inner .active.left {
+        left: -50%;
+    }
+    .carousel-inner .next {
+        left: 50%;
+    }
+    .carousel-inner .prev {
+        left: -50%;
+    }
+    .active>div {
+        display: none;
+    }
+    .active>div:first-child {
+        display: block;
+    }
+    .active>div:first-child+div {
+        display: block;
+    }
+}
+
+@media (min-width: 992px) {
+    .carousel-inner .active.left {
+        left: -25%;
+    }
+    .carousel-inner .next {
+        left: 25%;
+    }
+    .carousel-inner .prev {
+        left: -25%;
+    }
+}
+
+.carousel-inner > div > div {
+  float: left;
+  padding: 5px;
+}
+
+.carousel-inner > div img {
+  display: block;
+  transition: .1s transform;
+  transform: translateZ(0); /* hack */
+}
+
+.carousel-inner > div > div:hover {
+  z-index: 1;
+}
+
+.carousel-inner > div > div:hover img {
+  transform: scale(1.2,1.2);
+  transition: .3s transform;
+}
+
+.carousel-inner:before, .carousel-inner:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+
+.carousel img {
+    margin:20px;
+}
+
+
+@import url(https://fonts.googleapis.com/css?family=Patua+One);
+
+.img-title {
+    font: 32px 'Patua One', sans-serif;
+	text-align: center;
+    position:absolute;
+    bottom:-10%;
+    left: -2%;
+    width:100%;
+    padding:2%;
+    display: none;
+    color:#fff !important;
+    z-index:2;
+}
+
+.img-title h5 {
+  position: relative;
+  padding: 5px 10px;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0px -1px 0px rgba(0,0,0,0.3);
+  box-shadow: inset 0px 1px 0px rgba(255,255,255,.3),
+  			inset 0px 0px 20px rgba(0,0,0,0.1),
+  			0px 1px 1px rgba(0,0,0,0.4);
+  background: #01ADEF;
+}
+
+.img-title h5:before {
+  content: '';
+  position: absolute;
+  height: 0;
+  width: 0;
+  bottom: 100%;
+  left: 0;
+  border-bottom: 10px solid #0299d2;
+  border-left: 11px solid transparent;
+}
+
+</style>
+<div class="col-md-12 text-center">
+    <h3>You may be interested in...</h3></div>
+<div class="col-md-6 col-md-offset-3">
+    <div class="carousel slide" data-ride="carousel" data-type="multi" data-interval="3000" id="myCarousel">
+        <div class="carousel-inner">
+            <div class="item active">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                        <a href="#"><img src="http://placehold.it/162x100/a8ddb5/fff&amp;text=Article1" class="img-responsive thumbnail" data-toggle="tooltip" data-placement="bottom" title="Title"></a>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <figure class="gallery-item">
+                        <a href="#"><img src="http://placehold.it/162x100/43a2ca/fff&amp;text=Article2" class="img-responsive thumbnail"></a>
+                        <figcaption class="img-title">
+                            <h5>Title Title Title</h5>
+                        </figcaption>
+                    </figure>
+                </div>
+            </div>
+            <div class="item">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <figure class="gallery-item">
+                    <a href="#"><img src="http://placehold.it/162x100/fa9fb5/fff&amp;text=Article3" class="img-responsive thumbnail"></a>
+                    <figcaption class="img-title">
+                        <h5>Title Title Title</h5>
+                    </figcaption>
+                    </figure>
+                </div>
+            </div>
+            <div class="item">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <figure class="gallery-item">
+                    <a href="#"><img src="http://placehold.it/162x100/f03b20/fff&amp;text=Article4" class="img-responsive thumbnail"></a>
+                    <figcaption class="img-title">
+                        <h5>Title Title Title</h5>
+                    </figcaption>
+                    </figure>
+                </div>
+            </div>
+            <div class="item">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <figure class="gallery-item">
+                    <a href="#"><img src="http://placehold.it/162x100/f566f5/333&amp;text=Article5" class="img-responsive thumbnail"></a>
+                    <figcaption class="img-title">
+                        <h5>Title Title Title</h5>
+                    </figcaption>
+                    </figure>
+                </div>
+            </div>
+            <div class="item">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <figure class="gallery-item">
+                    <a href="#"><img src="http://placehold.it/162x100/636363/fff&amp;text=Article6" class="img-responsive thumbnail"></a>
+                    <figcaption class="img-title">
+                        <h5>Title Title Title</h5>
+                    </figcaption>
+                    </figure>
+                </div>
+            </div>
+            <div class="item">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                <figure class="gallery-item">
+                    <a href="#"><img src="http://placehold.it/162x100/fec44f/fff&amp;text=Article7" class="img-responsive thumbnail"></a>
+                    <figcaption class="img-title">
+                        <h5>Title Title Title</h5>
+                    </figcaption>
+                    </figure>
+                </div>
+            </div>
+            <div class="item">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                <figure class="gallery-item">
+                    <a href="#"><img src="http://placehold.it/162x100/bcbddc/333&amp;text=Article8" class="img-responsive thumbnail"></a>
+                    <figcaption class="img-title">
+                        <h5>Title Title Title</h5>
+                    </figcaption>
+                    </figure>
+                </div>
+            </div>
+        </div>
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+    </div>
+</div>
+
+
+<script>
+$(document).ready(function() {
+$('.carousel[data-type="multi"] .item').each(function(){
+  var next = $(this).next();
+  if (!next.length) {
+    next = $(this).siblings(':first');
+  }
+  next.children(':first-child').clone().appendTo($(this));
+
+  for (var i=0;i<2;i++) {
+    next=next.next();
+    if (!next.length) {
+    	next = $(this).siblings(':first');
+  	}
+
+    next.children(':first-child').clone().appendTo($(this));
+  }
+});
+
+$('.gallery-item').hover( function() {
+        $(this).find('.img-title').fadeIn(300);
+    }, function() {
+        $(this).find('.img-title').fadeOut(100);
+});
+
+});
+</script>
