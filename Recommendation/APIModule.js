@@ -31,7 +31,7 @@ class APIModule extends HttpModule {
         const pageGot = (page) => {
             const parser = new DOMParser();
             let doc = parser.parseFromString(page, "text/xml")
-            let doc_content = doc.getElementById("bodyContent");
+            let doc_content = doc.getElementById("mw-content-text");
 
             let infobox = $(page).find('.infobox').find("img:not(.thumbborder)");
 
