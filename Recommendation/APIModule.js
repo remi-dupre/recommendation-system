@@ -34,6 +34,7 @@ class APIModule extends HttpModule {
             const a_imgs = doc.getElementsByTagName("a").getElementsByClassName("image");
 
             let imgDOM = a_imgs ? a_imgs[0].firstElementChild : null, i = 0;
+            console.log(imgDOM);
             // while (imgDOM.offsetParent && imgDOM.offsetParent.className == "mbox-image") {
             //     i += 1;
             //     imgDOM = a_imgs[i];
