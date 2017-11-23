@@ -173,6 +173,8 @@ class Recommender {
             if (choseBestLinkCount > slideshow._maxSlides) return;
             
             console.log(choseBestLinkCount);
+            console.log(baseTitle + " : ");
+            console.log(links);
 
             choseBestLinkCount++;
             if (this._chosenArticles >= slideshow._maxSlides) return;
@@ -191,6 +193,7 @@ class Recommender {
             }
 
             const end = () => {
+                console.log(best_link);
                 if (this._chosenArticles.length < slideshow._maxSlides && best_link == null) {
                     pickPersonalArticle();
                     return;
