@@ -186,12 +186,12 @@
 }
 
 .btn-toggle:before {
-    content: 'Off';
+    content: 'No ';
     left: -4rem;
 }
 
 .btn-toggle:after {
-    content: 'On';
+    content: 'Yes';
     right: -4rem;
     opacity: .5;
 }
@@ -289,12 +289,12 @@
 }
 
 .btn-toggle.btn-lg:before {
-    content: 'Off';
+    content: 'No ';
     left: -5rem;
 }
 
 .btn-toggle.btn-lg:after {
-    content: 'On';
+    content: 'Yes';
     right: -5rem;
     opacity: .5;
 }
@@ -383,7 +383,7 @@
 }
 
 .btn-toggle.btn-sm:before {
-    content: 'No';
+    content: 'No ';
     left: -0.5rem;
 }
 
@@ -478,12 +478,12 @@
 }
 
 .btn-toggle.btn-xs:before {
-    content: 'Off';
+    content: 'No ';
     left: 0;
 }
 
 .btn-toggle.btn-xs:after {
-    content: 'On';
+    content: 'Yes';
     right: 0;
     opacity: .5;
 }
