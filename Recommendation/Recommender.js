@@ -171,7 +171,7 @@ class Recommender {
         const choseBestLink = (baseTitle, links) => {
 
             if (choseBestLinkCount > slideshow._maxSlides) return;
-            
+
             console.log(choseBestLinkCount);
             console.log(baseTitle + " : ");
             console.log(links);
@@ -181,6 +181,8 @@ class Recommender {
 
             let best_link = null, best_distance = Infinity;
             const checkDistance = (link, distance) => {
+                console.log(link);
+                console.log(distance);
                 if (distance < best_distance) {
                     best_distance = distance;
                     best_link = link;
