@@ -119,7 +119,7 @@ class Recommender {
 
         this._chosenArticles = [];
 
-        const serendipityCoin = Number($('#serendipity')[0].value) / 20;
+        //const serendipityCoin = Number($('#serendipity')[0].value) / 20;
 
         ///////////////////////// SERENDIPITY PART /////////////////////////
 
@@ -166,8 +166,13 @@ class Recommender {
 
         ///////////////////////// COMFORT ZONE PART /////////////////////////
 
+        let choseBestLinkCount = 0; // To avoid overflow
+
         const choseBestLink = (baseTitle, links) => {
-            console.log("a");
+
+            if (choseBestLinkCount > slideshow._maxSlides) return;
+
+            choseBestLinkCount++;
             if (this._chosenArticles >= slideshow._maxSlides) return;
 
             let best_link = null, best_distance = Infinity;
@@ -188,6 +193,7 @@ class Recommender {
                     pickPersonalArticle();
                     return;
                 }
+                choseBestLinkCount--;
                 this._chosenArticles.push(best_link);
                 if (this._chosenArticles.length == slideshow._maxSlides) {
                     slideshow.update(this._chosenArticles);
@@ -210,7 +216,7 @@ class Recommender {
         }
 
         for (let i = 0; i < slideshow._maxSlides; i++) {
-            if (Math.random() < serendipityCoin) {
+            if (Math.random() < 0) {
                 // Global
                 pickMostViewedArticle();
             } else {
