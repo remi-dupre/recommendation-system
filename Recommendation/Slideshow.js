@@ -109,13 +109,15 @@ class Slideshow {
         this._HTMLelement.style.opacity = this._opacity;
     }
 
-    disappear() {        
+    disappear() {
         this._imagesCount = 0;
         this._images = []; // {img: ..., href: ...}
         this.setOpacity(this._opacity - Constants.FADE_SPEED);
         let that = this;
         if (this._opacity > 0) {
             setTimeout( () => { that.disappear(); }, Constants.FREQUENCY );
+        } else {
+            $('#WikirecSlideshow')[0].innerHTML = '';
         }
     }
 
