@@ -45,7 +45,7 @@ class Slideshow {
         const upper_lane = document.createElement('div');
         this._HTMLelement.appendChild(upper_lane);
 
-        upper_lane.innerHTML = "Pages you may like..."
+        upper_lane.innerHTML = "Pages you may be interested in..."
         upper_lane.style.textAlign = "center";
         upper_lane.style.padding = "1px";
         upper_lane.style.color = "white";
@@ -103,9 +103,3 @@ class Slideshow {
 }
 
 let slideshow = new Slideshow();
-
-window.onresize = function(event) {
-    slideshow.delete();
-    slideshow._HTMLelement = slideshow.createDiv();
-    slideshow.update(art.links);
-};
