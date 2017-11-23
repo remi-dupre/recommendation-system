@@ -53,7 +53,7 @@ class HttpModule {
             handle
         );
     }
-    
+
     _getMostViewedArticles(callback) {
         this.sendQuery(
             Constants.MOST_VIEWED_URL + Constants.DATE_BEG.getFullYear() + '/' + (Constants.DATE_BEG.getMonth() + 1) + '/' + Constants.DATE_BEG.getUTCDate(),

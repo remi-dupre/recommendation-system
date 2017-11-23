@@ -63,7 +63,7 @@ class APIModule extends HttpModule {
 
         this.sendRawQuery(link, pageGot);
     };
-    
+
     getMostViewedArticles(callback) {
         this._getMostViewedArticles(callback);
     }

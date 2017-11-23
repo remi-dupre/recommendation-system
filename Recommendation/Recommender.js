@@ -11,7 +11,11 @@ class Recommender {
 
         const addArticle = (article, articleText, container) => {
             this._articlesCount += 1;
-            article.text = articleText.substr(0, Constants.MAX_TEXT_SIZE);
+            const p = new DOMParser();
+            article.dom = p.parseFromString(articleText, 'text/xml');
+            const raw = article.dom.getElementById('content').innerHTML;  // get raw text
+
+            article.text = $(raw).find('p').text().replace(/\[\d*\]/g, '').substr(0, Constants.MAX_TEXT_SIZE);
             container.push(article);
         }
         const candidates = Object.values(user.getStorage(Constants.STORAGE_ARTICLES));
@@ -19,7 +23,7 @@ class Recommender {
         for (let article of candidates) {
             const container = (article.vote == 1) ? this._likedArticles : (article.vote == 0) ? this._visitedArticles : null;
             if (container === null) continue; // Disliked article
-            apiMod.retrieveText(article.link, (articleText) => { addArticle(article, articleText, container); });
+            apiMod.sendRawQuery(article.link, (articleText) => { addArticle(article, articleText, container); });
         }
 
     }
@@ -88,7 +92,7 @@ class Recommender {
             // Already visited articles comparison
 
             for (let visitedArticle of this._visitedArticles.concat(this._likedArticles)) {
-                compareArticles(visitedArticle.text);
+                compareArticles(visitedArticle.dom);
             }
 
             setTimeout(() => {
@@ -103,7 +107,7 @@ class Recommender {
     }
 
     mind() {
-        
+
         slideshow.disappear();
 
         // If articles aren't loaded, we wait
@@ -115,7 +119,9 @@ class Recommender {
 
         this._chosenArticles = [];
 
-        //const serendipityCoin = Number($('#serendipity')[0].value) / 20;
+        const serendipityCoin = Number($('#serendipity')[0].value) / 20;
+
+        ///////////////////////// SERENDIPITY PART /////////////////////////
 
         let mostViewedArticles = [];
 
@@ -144,7 +150,7 @@ class Recommender {
             }
 
             let coin = parseInt(Math.random() * Constants.MOST_VIEWED_COUNT)
-            
+
             if (mostViewedArticles[coin] === undefined) {
                 setTimeout( pickMostViewedArticle, 500 );
                 return;
@@ -158,12 +164,36 @@ class Recommender {
             }
         }
 
+        ///////////////////////// COMFORT ZONE PART /////////////////////////
+
+        const choseBestLink = (links) => {
+            if (this._chosenArticles >= slideshow._maxSlides) return;
+            this._chosenArticles.push(links[0]);
+            if (this._chosenArticles.length == slideshow._maxSlides) {
+                slideshow.update(this._chosenArticles);
+            }
+        }
+
+        const pickPersonalArticle = () => {
+
+            const articlesList = (this._likedArticles.length) ? this._likedArticles : (this._visitedArticles.length) ? this._visitedArticles : null;
+            if (articlesList == null) {
+                pickMostViewedArticle();
+                return;
+            }
+
+            const tmp = articlesList[parseInt(Math.random() * articlesList.length)];
+            const chosenStartingArticle = new Article(tmp.dom, tmp.link, choseBestLink);
+            console.log(chosenStartingArticle);
+        }
+
         for (let i = 0; i < slideshow._maxSlides; i++) {
-            if (Math.random() < 1) {
+            if (Math.random() < serendipityCoin) {
                 // Global
                 pickMostViewedArticle();
             } else {
                 // Personal
+                pickPersonalArticle();
             }
         }
     }

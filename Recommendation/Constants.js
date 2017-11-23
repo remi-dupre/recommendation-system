@@ -7,7 +7,7 @@ const Constants = {
     VIEWS_URL : 'https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/all-agents/#1/daily/#2/#3',
     MOST_VIEWED_URL: 'https://wikimedia.org/api/rest_v1/metrics/pageviews/top/en.wikipedia/all-access/',
     STORAGE_ARTICLES : 'WikiRec|articles',
-    
+
     //Slideshow
     FADE_SPEED : 0.03,
     FREQUENCY : 16,

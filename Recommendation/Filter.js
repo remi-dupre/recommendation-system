@@ -39,6 +39,12 @@ class Filter {
         // Function called after loading views
         const end = () => {
 
+            if (popularityContainer.length == 0) {
+                console.log("Container is empty. Article : ");
+                console.log(article);
+                return;
+            }
+
             popularityContainer.sort( (a, b) => b.views - a.views );
 
             // Uniform pick of SECOND_PASS_CANDIDATES articles wrt views
@@ -48,9 +54,8 @@ class Filter {
 
             const chosenArticles = [];
 
-            for (let i=0; i < Constants.SECOND_PASS_CANDIDATES; ++i) {
+            for (let i=0; i < Math.min(popularityContainer.length, Constants.SECOND_PASS_CANDIDATES); ++i) {
                 const pick = parseInt(Math.random() * sumViews);
-
 
                 let sum = popularityContainer[0].views, i = 0;
                 while (pick > sum) {
@@ -61,9 +66,7 @@ class Filter {
                 sumViews -= popularityContainer[i].views;
                 popularityContainer.splice(i, 1);
             }
-            this.contentBasedFiltering(chosenArticles.map(
-                tuple => tuple.link
-            ), article);
+            article.links = links;
         };
 
         // Callback function
