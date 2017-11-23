@@ -31,9 +31,9 @@ class APIModule extends HttpModule {
         const pageGot = (page) => {
             const parser = new DOMParser();
             const doc = parser.parseFromString(page, "text/xml");
-            const a_imgs = doc.getElementsByClassName("img");
+            const a_imgs = doc.getElementsByClassName("image");
 
-            let imgDOM = a_imgs[0].firstElementChild, i = 0;
+            let imgDOM = a_imgs ? a_imgs[0].firstElementChild : null, i = 0;
             // while (imgDOM.offsetParent && imgDOM.offsetParent.className == "mbox-image") {
             //     i += 1;
             //     imgDOM = a_imgs[i];
