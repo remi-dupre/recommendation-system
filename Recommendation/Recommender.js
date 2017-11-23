@@ -8,37 +8,56 @@ class Recommender {
      * Estimate how it is relevant to choose an article.
      */
     static estimate(link, callback) {
-        const dist_url = 'http://whoping.fr:8080/text/dist'; // Url to get the distance
-        const candidates = Object.values(user.getStorage(Constants.STORAGE_ARTICLES)).map(x => x.links);
 
-        apiMod.retrieveText(link, function(text1) {
-            let answers = 0;        // Count the number of answers so far
-            let min_val = Infinity; // Minimum distance so far
+        // We check if the user already saw this page1
+        if ( Object.values(user.getStorage(Constants.STORAGE_ARTICLES)).map(
+            l => l.link
+        ).includes(link) )
+            callback(Infinity);
 
-            candidates.map((link2) => apiMod.retrieveText(link2, function(text2) {
-                // Calculate distance
+        const gotArticleText = (articleText) => {
+
+            let answers = 0, min_val = Infinity;
+
+            // Callback functions
+
+            const successFunction = (dist) => {
+                console.log(dist);
+                answers += 1;
+                min_val = Math.min(min_val, Number(dist));
+                if (answers == candidates.length)
+                   callback(min_val);
+            }
+
+            const errorFunction = (dist) => {
+                console.log(dist);
+                answers += 1;
+                if (answers == candidates.length)
+                   callback(min_val);
+            }
+
+            const dist_url = 'http://whoping.fr:8080/text/dist'; // Url to get the distance
+            const candidates = Object.values(user.getStorage(Constants.STORAGE_ARTICLES)).map(x => x.link);
+
+            const compareArticles = (retrievedText) => {
                 $.post({
-                    url: dist_url,
-                    dataType: 'text',
-                    data: {'text1': text1, 'text2': text2},
-                    success: function(dist) {
-                        answers += 1;
-                        min_val = Math.min(min_val, Number(dist));
-
-                        if (answers == candidates.length) {
-                            callback(1 / min_val);
-                        }
-                    },
-                    error: function(err) {
-                        answers += 1;
-
-                        if (answers == candidates.length) {
-                            callback(1 / min_val);
-                        }
-                    }
+                    'url': dist_url,
+                    'dataType': 'text',
+                    'data': { 'text1': articleText, 'text2': retrievedText },
+                    'success': successFunction,
+                    'error': errorFunction
                 });
-            }));
-        });
+            }
+
+            // Already visited articles comparison
+
+            for (let visitedArticle of candidates) {
+                apiMod.retrieveText(visitedArticle, compareArticles);
+            }
+
+        }
+
+        apiMod.retrieveText(link, gotArticleText);
     }
 
     static mind() {
@@ -72,15 +91,6 @@ class Recommender {
                 }
             ).filter(
                 !(l.name in ["Main_Page", "Special:Search"] )
-            ).map(
-                l => {
-                    return {
-                        'value': Recommender.estimate(l),
-                        'href': l.href
-                    }
-                }
-            ).sort(
-                (a, b) => b.value - a.value
             );
 
             slideshow.update(chosenArticle.link);
