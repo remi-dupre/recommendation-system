@@ -47,7 +47,7 @@ class APIModule extends HttpModule {
                 'title': doc.getElementById("firstHeading").innerHTML
             };
 
-            callback( (img.src === undefined) ? null : img );
+            callback( img );
         }
 
         this.sendRawQuery(link, pageGot);
