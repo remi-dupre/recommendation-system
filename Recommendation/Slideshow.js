@@ -10,8 +10,6 @@ class Slideshow {
     }
 
     draw() {
-        this.delete();
-        this._HTMLelement = this.createDiv();
         let offset = 0;
         for (let img of this._images) {
             const divDOM = document.createElement('div');
@@ -64,7 +62,6 @@ class Slideshow {
         const div = document.createElement('div');
         div.id = "WikirecSlideshow";
 
-        div.style.border = "1px solid black";
         div.style.width = "70%";
         div.style.height = "100%";
         div.style.marginLeft = "15%";
@@ -90,8 +87,10 @@ class Slideshow {
         this._imagesCount += 1;
         const callback = (img) => {
             this._images.push({'img': img.src, 'title': img.title, 'href': link});
-            if (this._images.length == this._maxSlides)
+            if (this._images.length == this._maxSlides) {
+                this.draw();
                 this.appear();
+            }
         }
         apiMod.retrieveImage({
             'link': link,
@@ -119,10 +118,11 @@ class Slideshow {
     }
 
     appear() {
+        console.log(this._opacity);
         this.setOpacity(this._opacity + Constants.FADE_SPEED);
         let that = this;
         if (this._opacity < 1) {
-            setTimeout( () => { that.disappear(); }, Constants.FREQUENCY );
+            setTimeout( () => { that.appear(); }, Constants.FREQUENCY );
         }
     }
 }

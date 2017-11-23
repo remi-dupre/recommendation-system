@@ -7,8 +7,8 @@ const Constants = {
     STORAGE_ARTICLES : 'WikiRec|articles',
 
     //Slideshow
-    FADE_SPEED = 0.03,
-    FREQUENCY = 16,
+    FADE_SPEED : 0.03,
+    FREQUENCY : 16,
 
     // Last week
     DATE_BEG : new Date((new Date(now)).setDate(now.getDate() - 7)),
