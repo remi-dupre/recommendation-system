@@ -383,12 +383,12 @@
 }
 
 .btn-toggle.btn-sm:before {
-    content: 'Off';
+    content: 'No';
     left: -0.5rem;
 }
 
 .btn-toggle.btn-sm:after {
-    content: 'On';
+    content: 'Yes';
     right: -0.5rem;
     opacity: .5;
 }
