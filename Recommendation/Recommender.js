@@ -144,6 +144,11 @@ class Recommender {
             }
 
             let coin = parseInt(Math.random() * Constants.MOST_VIEWED_COUNT)
+            
+            if (mostViewedArticles[coin] === undefined) {
+                setTimeout( pickMostViewedArticle, 500 );
+                return;
+            }
 
             this._chosenArticles.push(mostViewedArticles[coin]);
             mostViewedArticles.splice(coin, 1);
