@@ -145,6 +145,7 @@ app.get('/word/freq/:word', function(req, res) {
 
 app.get('/word/vect/:word', function(req, res) {
     res.setHeader('Content-Type', 'text/plain');
+    res.setHeader('Access-Control-Allow-Origin' '*');
     if (req.params.word in words)
         res.end(words[req.params.word].join(' '));
     else

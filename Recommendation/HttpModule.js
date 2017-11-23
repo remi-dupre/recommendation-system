@@ -83,7 +83,6 @@ class HttpModule {
                 --this.queriesCount;
                 handle(JSON.parse(xmlHttp.responseText));
             }
-
         }
         xmlHttp.open("GET", url, true);
         xmlHttp.send(null);

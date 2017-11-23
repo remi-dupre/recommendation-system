@@ -45,7 +45,23 @@ class APIModule extends HttpModule {
         }
 
         this.sendRawQuery(link, pageGot);
-    }
+    };
+
+    /**
+     * Get the raw text of a wikipedia page given its url
+     */
+    retrieveText(link, callback) {
+        const pageGot = (page) => {
+            const parser = new DOMParser();
+            const raw = parser.parseFromString(page, "text/xml").getElementById('content').innerHTML;  // get raw text
+
+            const no_note = $(raw).find('p').text().replace(/\[\d*\]/g, '');    // remove footnotes
+
+            callback(no_note);
+        };
+
+        this.sendRawQuery(link, pageGot);
+    };
 
     /** Get specific parameter for a given article
      * @param {string} title the title of the article

@@ -4,8 +4,41 @@ class Recommender {
         this._chosenArticles = [];
     }
 
-    static estimate() {
-        
+    /**
+     * Estimate how it is relevant to choose an article.
+     */
+    static estimate(link, callback) {
+        const dist_url = 'http://whoping.fr:8080/text/dist'; // Url to get the distance
+        const candidates = Object.values(user.getStorage(Constants.STORAGE_ARTICLES)).map(x => x.links);
+
+        apiMod.retrieveText(link, function(text1) {
+            let answers = 0;        // Count the number of answers so far
+            let min_val = Infinity; // Minimum distance so far
+
+            candidates.map((link2) => apiMod.retrieveText(link2, function(text2) {
+                // Calculate distance
+                $.post({
+                    url: dist_url,
+                    dataType: 'text',
+                    data: {'text1': text1, 'text2': text2},
+                    success: function(dist) {
+                        answers += 1;
+                        min_val = Math.min(min_val, Number(dist));
+
+                        if (answers == candidates.length) {
+                            callback(1 / min_val);
+                        }
+                    },
+                    error: function(err) {
+                        answers += 1;
+
+                        if (answers == candidates.length) {
+                            callback(1 / min_val);
+                        }
+                    }
+                });
+            }));
+        });
     }
 
     static mind() {
@@ -32,8 +65,10 @@ class Recommender {
                 Constants.MOST_VIEWED_TOTAL - Constants.MOST_VIEWED_COUNT
             ).map(
                 a => {
-                    'name': a.article,
-                    'href': Constants.BASE_URL + a.article
+                    return {
+                        'name': a.article,
+                        'href': Constants.BASE_URL + a.article
+                    }
                 }
             ).filter(
                 !(l.name in ["Main_Page", "Special:Search"] )
