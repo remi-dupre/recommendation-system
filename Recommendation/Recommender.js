@@ -103,6 +103,8 @@ class Recommender {
     }
 
     mind() {
+        
+        slideshow.disappear();
 
         // If articles aren't loaded, we wait
         if (this._articlesCount == 0) {
