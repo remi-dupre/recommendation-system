@@ -122,7 +122,6 @@ class Slideshow {
     }
 
     appear() {
-        console.log(this._opacity);
         this.setOpacity(this._opacity + Constants.FADE_SPEED);
         let that = this;
         if (this._opacity < 1) {
