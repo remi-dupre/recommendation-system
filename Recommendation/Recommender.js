@@ -119,7 +119,7 @@ class Recommender {
 
         this._chosenArticles = [];
 
-        //const serendipityCoin = Number($('#serendipity')[0].value) / 20;
+        const serendipityCoin = Number($('#serendipity')[0].value) / 20;
 
         ///////////////////////// SERENDIPITY PART /////////////////////////
 
@@ -166,48 +166,60 @@ class Recommender {
 
         ///////////////////////// COMFORT ZONE PART /////////////////////////
 
-        let choseBestLinkCount = 0; // To avoid overflow
+        let choseBestLinkCount = 0, funcCount = 0, bestArticles = []; // To avoid overflow
 
         const choseBestLink = (baseTitle, links) => {
 
             if (choseBestLinkCount > slideshow._maxSlides) return;
+            const funcID = funcCount;
+            let terminated = false;
+            let answerGot = false;
+            bestArticles.push(null);
+            funcCount += 1;
 
-            console.log(choseBestLinkCount);
-            console.log(baseTitle + " : ");
-            console.log(links);
+            console.log('[' + funcID + '] booting with ' + links.length + ' elements.');
 
             choseBestLinkCount++;
             if (this._chosenArticles >= slideshow._maxSlides) return;
 
             let best_link = null, best_distance = Infinity;
             const checkDistance = (link, distance) => {
-                console.log(link);
-                console.log(distance);
-                if (distance < best_distance) {
+                if (!answerGot) {
+                    setTimeout( end, 5000 );
+                }
+                answerGot = true;
+                if (terminated) return;
+                console.log('[' + funcID + '] Checking link ' + link.href + '. Best link until now : ' + ((best_link !== null) ? best_link.href : null));
+                if (distance < best_distance && !this._chosenArticles.map( l => l.href ).includes(link.href) && !bestArticles.includes(link.href)) {
+                    console.log('[' + funcID + '] ' + link.href + ' has been accepted.');
                     best_distance = distance;
                     best_link = link;
+                    bestArticles[funcID] = link.href;
                 }
             }
-            for (let link of links) {
-                if (this._chosenArticles.map(l => l.href).includes(link.href)) continue;
 
+            for (let i=0; i < 5; i++) {
+                const link = links[parseInt(Math.random() * links.length)];
+                if (this._chosenArticles.map(l => l.href).includes(link.href)) continue;
+                console.log('[' + funcID + '] requesting for ' + link.href + '.');
                 apiMod.distanceFromNames(link.name, baseTitle, (distance) => { checkDistance(link, distance); });
             }
 
             const end = () => {
-                console.log(best_link);
-                if (this._chosenArticles.length < slideshow._maxSlides && best_link == null) {
-                    pickPersonalArticle();
+                terminated = true;
+                choseBestLinkCount -= 1;
+                if (this._chosenArticles.length < slideshow._maxSlides && (best_link == null || this._chosenArticles.map( l => l.href).includes(best_link.href) )) {
+                    console.log('[' + funcID + '] Null or already taken. Delegating...');
+                    setTimeout(pickPersonalArticle, 2000);
                     return;
                 }
-                choseBestLinkCount--;
+                console.log('[' + funcID + '] ' + best_link.href + ' has been selected.');
                 this._chosenArticles.push(best_link);
+                bestArticles[funcID] = null;
                 if (this._chosenArticles.length == slideshow._maxSlides) {
                     slideshow.update(this._chosenArticles);
                 }
             }
-
-            setTimeout( end, 5000 );
         }
 
         const pickPersonalArticle = () => {
@@ -223,7 +235,7 @@ class Recommender {
         }
 
         for (let i = 0; i < slideshow._maxSlides; i++) {
-            if (Math.random() < 0) {
+            if (Math.random() < serendipityCoin) {
                 // Global
                 pickMostViewedArticle();
             } else {
