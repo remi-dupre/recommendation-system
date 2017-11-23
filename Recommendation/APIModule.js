@@ -30,7 +30,8 @@ class APIModule extends HttpModule {
     retrieveImage({link, callback}) {
         const pageGot = (page) => {
             const parser = new DOMParser();
-            const doc = parser.parseFromString(page, "text/xml");
+            let doc = parser.parseFromString(page, "text/xml");
+            doc = doc.getElementById("bodyContent");
 
             let infobox = $(page).find('.infobox').find("img:not(.thumbborder)");
 
