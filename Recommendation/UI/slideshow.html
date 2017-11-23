@@ -73,10 +73,11 @@
   padding: 5px;
 }
 
-.carousel-inner > div img {
+.carousel-inner img {
   display: block;
-  transition: .1s transform;
+  transition: .4s transform;
   transform: translateZ(0); /* hack */
+  margin: 20px;
 }
 
 .carousel-inner > div > div:hover {
@@ -85,17 +86,13 @@
 
 .carousel-inner > div > div:hover img {
   transform: scale(1.2,1.2);
-  transition: .3s transform;
+  transition: .7s transform;
 }
 
 .carousel-inner:before, .carousel-inner:after {
   display: table;
   content: "";
   line-height: 0;
-}
-
-.carousel img {
-    margin:20px;
 }
 
 
@@ -141,18 +138,23 @@
 <div class="col-md-12 text-center">
     <h3>You may be interested in...</h3></div>
 <div class="col-md-6 col-md-offset-3">
-    <div class="carousel slide" data-ride="carousel" data-type="multi" data-interval="3000" id="myCarousel">
+    <div class="carousel slide" data-ride="carousel" data-type="multi" data-interval="3000" id="slideshow">
         <div class="carousel-inner">
             <div class="item active">
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                        <a href="#"><img src="http://placehold.it/162x100/a8ddb5/fff&amp;text=Article1" class="img-responsive thumbnail" data-toggle="tooltip" data-placement="bottom" title="Title"></a>
+                    <figure class="gallery-item">
+                        <a href="#"><img src="http://placehold.it/500/a8ddb5/fff&amp;text=Article1" class="img-responsive thumbnail"></a>
+                        <figcaption class="img-title">
+                            <h5>Title Title Title</h5>
+                        </figcaption>
+                    </figure>
                 </div>
             </div>
 
             <div class="item">
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <figure class="gallery-item">
-                        <a href="#"><img src="http://placehold.it/162x100/43a2ca/fff&amp;text=Article2" class="img-responsive thumbnail"></a>
+                        <a href="#"><img src="http://placehold.it/500/43a2ca/fff&amp;text=Article2" class="img-responsive thumbnail"></a>
                         <figcaption class="img-title">
                             <h5>Title Title Title</h5>
                         </figcaption>
@@ -162,7 +164,7 @@
             <div class="item">
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <figure class="gallery-item">
-                    <a href="#"><img src="http://placehold.it/162x100/fa9fb5/fff&amp;text=Article3" class="img-responsive thumbnail"></a>
+                    <a href="#"><img src="http://placehold.it/500/fa9fb5/fff&amp;text=Article3" class="img-responsive thumbnail"></a>
                     <figcaption class="img-title">
                         <h5>Title Title Title</h5>
                     </figcaption>
@@ -172,7 +174,7 @@
             <div class="item">
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <figure class="gallery-item">
-                    <a href="#"><img src="http://placehold.it/162x100/f03b20/fff&amp;text=Article4" class="img-responsive thumbnail"></a>
+                    <a href="#"><img src="http://placehold.it/500/f03b20/fff&amp;text=Article4" class="img-responsive thumbnail"></a>
                     <figcaption class="img-title">
                         <h5>Title Title Title</h5>
                     </figcaption>
@@ -182,7 +184,7 @@
             <div class="item">
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <figure class="gallery-item">
-                    <a href="#"><img src="http://placehold.it/162x100/f566f5/333&amp;text=Article5" class="img-responsive thumbnail"></a>
+                    <a href="#"><img src="http://placehold.it/500/f566f5/333&amp;text=Article5" class="img-responsive thumbnail"></a>
                     <figcaption class="img-title">
                         <h5>Title Title Title</h5>
                     </figcaption>
@@ -192,7 +194,7 @@
             <div class="item">
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <figure class="gallery-item">
-                    <a href="#"><img src="http://placehold.it/162x100/636363/fff&amp;text=Article6" class="img-responsive thumbnail"></a>
+                    <a href="#"><img src="http://placehold.it/500/636363/fff&amp;text=Article6" class="img-responsive thumbnail"></a>
                     <figcaption class="img-title">
                         <h5>Title Title Title</h5>
                     </figcaption>
@@ -202,7 +204,7 @@
             <div class="item">
                 <div class="col-md-3 col-sm-6 col-xs-12">
                 <figure class="gallery-item">
-                    <a href="#"><img src="http://placehold.it/162x100/fec44f/fff&amp;text=Article7" class="img-responsive thumbnail"></a>
+                    <a href="#"><img src="http://placehold.it/500/fec44f/fff&amp;text=Article7" class="img-responsive thumbnail"></a>
                     <figcaption class="img-title">
                         <h5>Title Title Title</h5>
                     </figcaption>
@@ -212,7 +214,7 @@
             <div class="item">
                 <div class="col-md-3 col-sm-6 col-xs-12">
                 <figure class="gallery-item">
-                    <a href="#"><img src="http://placehold.it/162x100/bcbddc/333&amp;text=Article8" class="img-responsive thumbnail"></a>
+                    <a href="#"><img src="http://placehold.it/500/bcbddc/333&amp;text=Article8" class="img-responsive thumbnail"></a>
                     <figcaption class="img-title">
                         <h5>Title Title Title</h5>
                     </figcaption>
@@ -220,8 +222,8 @@
                 </div>
             </div>
         </div>
-        <a class="left carousel-control" href="#myCarousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
-        <a class="right carousel-control" href="#myCarousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+        <a class="left carousel-control" href="#slideshow" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+        <a class="right carousel-control" href="#slideshow" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
     </div>
 </div>
 
@@ -245,11 +247,10 @@ $('.carousel[data-type="multi"] .item').each(function(){
   }
 });
 
-$('.gallery-item').hover( function() {
-        $(this).find('.img-title').fadeIn(300);
-    }, function() {
-        $(this).find('.img-title').fadeOut(100);
-});
+$('.gallery-item a').hover(
+    function() { $(this).parent().find('.img-title').fadeTo(300, 1);},
+    function() { $(this).parent().find('.img-title').fadeTo(200, 0);}
+    );
 
 });
 </script>
