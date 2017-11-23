@@ -6,6 +6,7 @@ class Slideshow {
         this._imgWidth = 0;
         this._HTMLelement = this.createDiv();
         this._images = []; // {img: ..., href: ...}
+        this._opacity = 0;
     }
 
     draw() {
@@ -67,6 +68,7 @@ class Slideshow {
         div.style.width = "70%";
         div.style.height = "100%";
         div.style.marginLeft = "15%";
+        div.style.opacity = this._opacity;
 
         parent.appendChild(div);
 
@@ -77,8 +79,9 @@ class Slideshow {
     }
 
     delete() {
-        const parent = document.getElementById("contentSub");
-        parent.removeChild(this._HTMLelement);
+        this.disappear();
+        this._images = [];
+        this._imagesCount = 0;
     }
 
     retrieveImage(link) {
@@ -87,7 +90,8 @@ class Slideshow {
         this._imagesCount += 1;
         const callback = (img) => {
             this._images.push({'img': img.src, 'title': img.title, 'href': link});
-            this.draw();
+            if (this._images.length == this._maxSlides)
+                this.appear();
         }
         apiMod.retrieveImage({
             'link': link,
@@ -98,6 +102,27 @@ class Slideshow {
     update(links) {
         for (let link of links) {
             this.retrieveImage(link.href);
+        }
+    }
+
+    setOpacity(x) {
+        this._opacity = Math.min(1, Math.max(0, x));
+        this._HTMLelement.style.opacity = this._opacity;
+    }
+
+    disappear() {
+        this.setOpacity(this._opacity - Constants.FADE_SPEED);
+        let that = this;
+        if (this._opacity > 0) {
+            setTimeout( () => { that.disappear(); }, Constants.FREQUENCY );
+        }
+    }
+
+    appear() {
+        this.setOpacity(this._opacity + Constants.FADE_SPEED);
+        let that = this;
+        if (this._opacity < 1) {
+            setTimeout( () => { that.disappear(); }, Constants.FREQUENCY );
         }
     }
 }

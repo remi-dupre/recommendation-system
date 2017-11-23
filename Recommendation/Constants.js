@@ -6,6 +6,10 @@ const Constants = {
     VIEWS_URL : 'https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/all-agents/#1/daily/#2/#3',
     STORAGE_ARTICLES : 'WikiRec|articles',
 
+    //Slideshow
+    FADE_SPEED = 0.03,
+    FREQUENCY = 16,
+
     // Last week
     DATE_BEG : new Date((new Date(now)).setDate(now.getDate() - 7)),
     DATE_END : now,
