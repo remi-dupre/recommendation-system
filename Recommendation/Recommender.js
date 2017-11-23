@@ -200,7 +200,7 @@ class Recommender {
 
             for (let i=0; i < 5; i++) {
                 const link = links[parseInt(Math.random() * links.length)];
-                if (this._chosenArticles.map(l => l.href).includes(link.href)) continue;
+                if (this._chosenArticles.map(l => l.href).includes(link.href) || user.getStorage(Constants.STORAGE_ARTICLES).map( l => l.link.substr(24, 100)).contains(link.href)) continue;
                 console.log('[' + funcID + '] requesting for ' + link.href + '.');
                 apiMod.distanceFromNames(link.name, baseTitle, (distance) => { checkDistance(link, distance); });
             }
