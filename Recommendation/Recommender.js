@@ -17,12 +17,12 @@ class Recommender {
 
         const gotArticleText = (articleText) => {
 
-            let answers = 0, min_val = Infinity;
+            let answers = 0, min_val = Infinity, returned = false;
 
             // Callback functions
 
             const successFunction = (dist) => {
-                console.log(dist);
+                if (returned) return;
                 answers += 1;
                 min_val = Math.min(min_val, Number(dist));
                 if (answers == candidates.length)
@@ -30,13 +30,13 @@ class Recommender {
             }
 
             const errorFunction = (dist) => {
-                console.log(dist);
+                if (returned) return;
                 answers += 1;
-                if (answers == candidates.length)
+                if (answers == candidates.length) {}
                    callback(min_val);
             }
 
-            const dist_url = 'http://whoping.fr:8080/text/dist'; // Url to get the distance
+            const dist_url = 'https://whoping.fr:8080/text/dist'; // Url to get the distance
             const candidates = Object.values(user.getStorage(Constants.STORAGE_ARTICLES)).map(x => x.link);
 
             const compareArticles = (retrievedText) => {
@@ -54,6 +54,8 @@ class Recommender {
             for (let visitedArticle of candidates) {
                 apiMod.retrieveText(visitedArticle, compareArticles);
             }
+
+            setTimeout(() => { returned = true; callback(min_val); }, 3000);
 
         }
 
