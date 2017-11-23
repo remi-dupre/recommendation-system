@@ -98,7 +98,7 @@ class HttpModule {
 
     getId(name, callback) {
         
-        console.log(this.queriesCount);
+        if (this.queriesCount > 1000) return;
 
         const pageGot = (page) => {
             const d = new DOMParser();
