@@ -32,11 +32,11 @@ class Loading {
         this.context.fillStyle = 'white';
         this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
-        this.context.strokeStyle = 'rgba(30, 30, 30, 0.2)';
-        this.context.lineWidth = 10;
-        this.context.beginPath();
-        this.context.arc(this.canvas.width/2 + 2, this.canvas.width/2 + 2, this.canvas.width/3*this.scale, 0, 2 * Math.PI);
-        this.context.stroke();
+//         this.context.strokeStyle = 'rgba(30, 30, 30, 0.2)';
+//         this.context.lineWidth = 10;
+//         this.context.beginPath();
+//         this.context.arc(this.canvas.width/2 + 2, this.canvas.width/2 + 2, this.canvas.width/3*this.scale, 0, 2 * Math.PI);
+//         this.context.stroke();
 
         this.context.translate(this.canvas.width/2, this.canvas.width/2);
 
@@ -44,11 +44,11 @@ class Loading {
 
         this.context.translate(-this.canvas.width/2, -this.canvas.width/2);
 
-        this.context.strokeStyle = '#AAAABB';
-        this.context.lineWidth = 10;
-        this.context.beginPath();
-        this.context.arc(this.canvas.width/2, this.canvas.width/2, this.canvas.width/3*this.scale, 0, 2 * Math.PI);
-        this.context.stroke();
+//         this.context.strokeStyle = '#AAAABB';
+//         this.context.lineWidth = 10;
+//         this.context.beginPath();
+//         this.context.arc(this.canvas.width/2, this.canvas.width/2, this.canvas.width/3*this.scale, 0, 2 * Math.PI);
+//         this.context.stroke();
 
         this.context.strokeStyle = 'rgba(166, 190, 249, 0.8)';
         this.context.lineWidth = 5;
