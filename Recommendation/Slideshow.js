@@ -29,86 +29,64 @@ class Slideshow {
                 }
             }
         }
-        let offset = 0;
-        for (let img of this._images) {
-            const divDOM = document.createElement('div');
 
-            divDOM.style.backgroundImage = "url('" + img.img + "')";
-            divDOM.style.height = "100px";
-            divDOM.style.width = this._imgWidth + "px";
-            divDOM.style.backgroundPosition = "center 30%";
-            divDOM.style.backgroundRepeat = "no-repeat";
-            divDOM.style.cursor = "pointer";
-            divDOM.style.opacity = '0.7';
-            divDOM.style.display = "inline-block";
-            divDOM.onclick = () => { location.href = img.href; }
-            divDOM.onmouseover = () => {
-                divDOM.fade = 'in';
-                fade(divDOM);
-                divDOM.style.textDecoration = 'underline';
-            }
-            divDOM.onmouseout = () => {
-                divDOM.fade = 'out';
-                fade(divDOM);
-                divDOM.style.textDecoration = 'none';
-            }
-
-            const bottom_lane = document.createElement('div');
-            divDOM.appendChild(bottom_lane);
-
-            const title = (img.title.length > 20) ? img.title.substr(0, 20) + '...' : img.title;
-            bottom_lane.innerHTML = title;
-            bottom_lane.style.textAlign = "center";
-            bottom_lane.style.padding = "1px";
-            bottom_lane.style.color = "white";
-            bottom_lane.style.fontWeight = "bold";
-            bottom_lane.style.background = "rgba(0, 0, 0, 0.6)";
-            bottom_lane.style.position = "relative";
-            bottom_lane.style.marginLeft = "-1px";
-            bottom_lane.style.marginTop = "85px";
-            bottom_lane.style.zIndex = 2;
-
-            if (img.title.length > 20) {
-                bottom_lane['data-toggle'] = 'tooltip';
-                bottom_lane['data-placement'] = 'bottom';
-                bottom_lane['title'] = img.title;
-            }
-
-            this._HTMLelement.appendChild(divDOM);
+        // String .format()
+        if (!String.prototype.format) {
+          String.prototype.format = function() {
+            var args = arguments;
+            return this.replace(/{(\d+)}/g, function(match, number) {
+              return typeof args[number] != 'undefined'
+                ? args[number]
+                : match
+              ;
+            });
+          };
         }
 
+        let offset = 0, count_imgs = 1;
 
-        const upper_lane = document.createElement('div');
-        this._HTMLelement.appendChild(upper_lane);
 
-        upper_lane.innerHTML = "Pages you may be interested in..."
-        upper_lane.style.textAlign = "center";
-        upper_lane.style.padding = "1px";
-        upper_lane.style.color = "white";
-        upper_lane.style.fontWeight = "bold";
-        upper_lane.style.background = "rgba(0, 0, 0, 0.6)";
-        upper_lane.style.position = "relative";
-        upper_lane.style.marginTop = "-101px";
-        upper_lane.style.marginLeft = "-1px";
-        upper_lane.style.zIndex = 2;
+        for (let img of this._images) {
+            if (count_imgs === 1 || count_imgs === 4) {
+                        $(this._HTMLelement).find('.carousel-inner')
+                                            .append('<div class="bootstrap item{0}">\
+                                                    <div class="bootstrap row">\
+                                                    </div>\
+                                                </div>'
+                                                .format((count_imgs === 1) ? " active" : "")
+                                                );
+            }
+
+            const title = (img.title.length > 20) ? img.title.substr(0, 20) + '...' : img.title;
+
+            $(this._HTMLelement).find('.carousel-inner .row:last')
+                    .append('<div class="bootstrap col-md-4">\
+                          <figure class="bootstrap gallery-item">\
+                              <a href="{0}"><img src="{1}" class="bootstrap img-responsive thumbnail"></a>\
+                              <figcaption class="bootstrap img-title">\
+                                  <h5>{2}</h5>\
+                              </figcaption>\
+                          </figure>\
+                        </div>'.format(img.href, img.img, title));
+
+            count_imgs += 1;
+        }
+
     }
 
     createDiv() {
         const parent = document.getElementById("contentSub");
         parent.style.height = "100px";
         parent.style.textAlign = "center";
-        const div = document.createElement('div');
-        div.id = "WikirecSlideshow";
-
-        div.style.width = "70%";
-        div.style.height = "100%";
-        div.style.marginLeft = "15%";
-        div.style.opacity = this._opacity;
+        var div;
+        $.get("slideshow.html", function(data){
+            html = $(data).html();
+        });
 
         parent.appendChild(div);
 
-        this._maxSlides = parseInt(div.offsetWidth / 162);
-        this._imgWidth = parseInt(div.offsetWidth / this._maxSlides) - 1;
+        this._maxSlides = 12;
+        this._imgWidth = 162;
 
         return div;
     }
