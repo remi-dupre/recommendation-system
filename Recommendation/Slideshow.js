@@ -27,7 +27,8 @@ class Slideshow {
             const bottom_lane = document.createElement('div');
             divDOM.appendChild(bottom_lane);
 
-            bottom_lane.innerHTML = img.title;
+            const title = (img.title.length > 20) ? img.title.substr(0, 20) + '...' : img.title;
+            bottom_lane.innerHTML = title;
             bottom_lane.style.textAlign = "center";
             bottom_lane.style.padding = "1px";
             bottom_lane.style.color = "white";
@@ -37,6 +38,12 @@ class Slideshow {
             bottom_lane.style.marginLeft = "-1px";
             bottom_lane.style.marginTop = "85px";
             bottom_lane.style.zIndex = 2;
+
+            if (img.title.length > 20) {
+                bottom_lane['data-toggle'] = 'tooltip';
+                bottom_lane['data-placement'] = 'bottom';
+                bottom_lane['title'] = img.title;
+            }
 
             this._HTMLelement.appendChild(divDOM);
         }
