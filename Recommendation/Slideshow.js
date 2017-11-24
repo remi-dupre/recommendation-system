@@ -59,7 +59,8 @@ class Slideshow {
 
     createDiv() {
         const parent = document.getElementById("contentSub");
-        parent.style = "height: 100px;"
+        parent.style.height = "100px";
+        parent.style.textAlign = "center";
         const div = document.createElement('div');
         div.id = "WikirecSlideshow";
 

@@ -8,15 +8,13 @@ class Loading {
         this.context = this.canvas.getContext('2d');
         this.wheel1 = 0;
         this.wheel2 = 0;
+        this.draw();
     }
 
     createDiv() {
         const canvas = document.createElement('canvas');
         canvas.width = '150';
         canvas.height = '150';
-        canvas.style.position = 'absolute';
-        canvas.style.top = '0px';
-        canvas.style.left = '0px';
         canvas.style.opacity = '0';
         canvas.hidden = true;
         const parent = document.getElementById("contentSub");
