@@ -75,7 +75,7 @@ class Slideshow {
     }
 
     createDiv() {
-        const parent = document.getElementById("contentSub");
+        let parent = $("#contentSub");
         parent.style.height = "100px";
         parent.style.textAlign = "center";
 
@@ -86,7 +86,7 @@ class Slideshow {
             div_return = $(data).html();
         });
 
-        parent.appendChild(div);
+        parent.append(div_return);
 
         this._maxSlides = 12;
         this._imgWidth = 162;
