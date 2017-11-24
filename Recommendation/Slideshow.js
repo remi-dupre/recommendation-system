@@ -11,6 +11,24 @@ class Slideshow {
     }
 
     draw() {
+
+        const fade = (dom) => {
+            if (dom.fade == 'in') {
+                dom.style.opacity = Math.min( 1, Number(dom.style.opacity) + 0.02 );
+                if (Number(dom.style.opacity) < 1) {
+                    setTimeout( () => { fade(dom); }, Constants.FREQUENCY );
+                } else {
+                    dom.fade = 'no';
+                }
+            } else if (dom.fade == 'out') {
+                dom.style.opacity = Math.max( 0.7, Number(dom.style.opacity) - 0.02 );
+                if (Number(dom.style.opacity) > 0.7) {
+                    setTimeout( () => { fade(dom); }, Constants.FREQUENCY );
+                } else {
+                    dom.fade = 'no';
+                }
+            }
+        }
         let offset = 0;
         for (let img of this._images) {
             const divDOM = document.createElement('div');
@@ -21,15 +39,17 @@ class Slideshow {
             divDOM.style.backgroundPosition = "center 30%";
             divDOM.style.backgroundRepeat = "no-repeat";
             divDOM.style.cursor = "pointer";
-            divDOM.style.display = "inline-block";
             divDOM.style.opacity = '0.7';
+            divDOM.style.display = "inline-block";
             divDOM.onclick = () => { location.href = img.href; }
             divDOM.onmouseover = () => {
-                divDOM.style.opacity = '1';
+                divDOM.fade = 'in';
+                fade(dom);
                 divDOM.style.textDecoration = 'underline';
             }
             divDOM.onmouseout = () => {
-                divDOM.style.opacity = '0.7';
+                divDOM.fade = 'out';
+                fade(dom);
                 divDOM.style.textDecoration = 'none';
             }
 
