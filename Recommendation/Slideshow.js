@@ -23,7 +23,7 @@ class Slideshow {
             divDOM.style.cursor = "pointer";
             divDOM.style.display = "inline-block";
             divDOM.onclick = () => { location.href = img.href; }
-            divDOM.onmouseon = () => {
+            divDOM.onmouseover = () => {
                 divDOM.style.opacity = '0.8';
                 divDOM.style.textDecoration = 'underline';
             }
