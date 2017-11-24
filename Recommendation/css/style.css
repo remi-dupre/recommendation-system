@@ -537,7 +537,7 @@
 /*---------------------*/
 
 
-.glyphicon.spinning {
+.spinning {
     animation: spin 1s infinite linear;
     -webkit-animation: spin2 1s infinite linear;
 }
@@ -552,6 +552,6 @@
     to { -webkit-transform: rotate(360deg); }
 }
 
-.glyphicon-refresh.spinning {
+.spinning {
   transform-origin: 48% 50%;
 }
