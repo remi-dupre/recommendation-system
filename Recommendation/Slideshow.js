@@ -23,6 +23,14 @@ class Slideshow {
             divDOM.style.cursor = "pointer";
             divDOM.style.display = "inline-block";
             divDOM.onclick = () => { location.href = img.href; }
+            divDOM.onmouseon = () => {
+                $('#WikirecSlideshow')[0].childNodes[0].style.opacity = '0.8';
+                $('#WikirecSlideshow')[0].childNodes[0].style.textDecoration = 'underline';
+            }
+            divDOM.onmouseout = () => {
+                $('#WikirecSlideshow')[0].childNodes[0].style.opacity = '1';
+                $('#WikirecSlideshow')[0].childNodes[0].style.textDecoration = 'none';
+            }
 
             const bottom_lane = document.createElement('div');
             divDOM.appendChild(bottom_lane);
