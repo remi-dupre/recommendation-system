@@ -5,6 +5,7 @@ class Slideshow {
         this._maxSlides = 0;
         this._imgWidth = 0;
         this._HTMLelement = this.createDiv();
+        this.loader = new Loading(this);
         this._images = []; // {img: ..., href: ...}
         this._opacity = 0;
     }
@@ -88,8 +89,7 @@ class Slideshow {
         const callback = (img) => {
             this._images.push({'img': img.src, 'title': img.title, 'href': link});
             if (this._images.length == this._maxSlides) {
-                this.draw();
-                this.appear();
+                this.loader.disappear();
             }
         }
         apiMod.retrieveImage({
@@ -118,16 +118,24 @@ class Slideshow {
             setTimeout( () => { that.disappear(); }, Constants.FREQUENCY );
         } else {
             $('#WikirecSlideshow')[0].innerHTML = '';
+            this._HTMLelement.hidden = true;
+            this.loader.appear();
         }
     }
 
     appear() {
+        this._HTMLelement.hidden = false;
         this.setOpacity(this._opacity + Constants.FADE_SPEED);
         let that = this;
         if (this._opacity < 1) {
             setTimeout( () => { that.appear(); }, Constants.FREQUENCY );
         }
     }
+
+    load() {
+        this.loader.appear();
+    }
 }
 
 let slideshow = new Slideshow();
+slideshow.load();
