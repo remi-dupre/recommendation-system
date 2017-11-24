@@ -88,7 +88,7 @@ class Loading {
     }
 
     disappear() {
-        this.scale -= 0.05;
+        this.scale -= 0.025;
         if (this.scale < 0)
             this.scale = 0;
         this.setOpacity(this._opacity - Constants.FADE_SPEED);
@@ -104,7 +104,7 @@ class Loading {
 
     appear() {
         this.canvas.hidden = false;
-        this.scale += 0.05;
+        this.scale += 0.025;
         if (this.scale > 1)
             this.scale = 1;
         this.setOpacity(this._opacity + Constants.FADE_SPEED);
