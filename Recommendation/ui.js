@@ -19,10 +19,10 @@ $(document).ready(function() {
     });
 
     $('#btn-refresh').click(function(e) {
-        $(this).addClass("spinning");
+        $(this).find(".glyphicon-refresh").addClass("spinning");
 
         setTimeout(function() {
-            $(this).removeClass("spinning");
+            $(this).find(".glyphicon-refresh").removeClass("spinning");
         }.bind(this), 1000);
 
         rec.mind();
