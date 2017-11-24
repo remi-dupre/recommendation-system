@@ -75,6 +75,9 @@ class Slideshow {
     }
 
     createDiv() {
+        $("#contentSub").css({
+            'text-align': 'center'
+        });
 
         var div_return;
 
