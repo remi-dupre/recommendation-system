@@ -22,13 +22,14 @@ class Slideshow {
             divDOM.style.backgroundRepeat = "no-repeat";
             divDOM.style.cursor = "pointer";
             divDOM.style.display = "inline-block";
+            divDOM.style.opacity = '0.7';
             divDOM.onclick = () => { location.href = img.href; }
             divDOM.onmouseover = () => {
-                divDOM.style.opacity = '0.8';
+                divDOM.style.opacity = '1';
                 divDOM.style.textDecoration = 'underline';
             }
             divDOM.onmouseout = () => {
-                divDOM.style.opacity = '1';
+                divDOM.style.opacity = '0.7';
                 divDOM.style.textDecoration = 'none';
             }
 
