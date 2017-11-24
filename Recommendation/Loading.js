@@ -51,7 +51,7 @@ class Loading {
 //         this.context.stroke();
 
         this.context.strokeStyle = 'rgba(166, 190, 249, 0.8)';
-        this.context.lineWidth = 5;
+        this.context.lineWidth = 8;
         this.context.beginPath();
         this.context.arc(this.canvas.width/2, this.canvas.width/2, this.canvas.width/3*this.scale, 0, Math.PI);
         this.context.stroke();
@@ -67,7 +67,7 @@ class Loading {
         this.context.translate(-this.canvas.width/2, -this.canvas.width/2);
 
         this.context.strokeStyle = 'rgba(167, 234, 248, 0.8)';
-        this.context.lineWidth = 5;
+        this.context.lineWidth = 8;
         this.context.beginPath();
         this.context.arc(this.canvas.width/2, this.canvas.width/2, this.canvas.width/3*this.scale, 0, Math.PI);
         this.context.stroke();
