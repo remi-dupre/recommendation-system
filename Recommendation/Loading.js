@@ -14,8 +14,8 @@ class Loading {
 
     createDiv() {
         const canvas = document.createElement('canvas');
-        canvas.width = '150';
-        canvas.height = '150';
+        canvas.width = '100';
+        canvas.height = '100';
         canvas.style.opacity = '0';
         canvas.hidden = true;
         const parent = document.getElementById("contentSub");
