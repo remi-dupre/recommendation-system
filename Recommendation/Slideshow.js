@@ -78,9 +78,9 @@ class Slideshow {
         const parent = document.getElementById("contentSub");
         parent.style.height = "100px";
         parent.style.textAlign = "center";
-        var div;
-        $.get("slideshow.html", function(data){
-            html = $(data).html();
+        
+        $.get("UI/slideshow.html", function(data){
+            let div = $(data).html();
         });
 
         parent.appendChild(div);
