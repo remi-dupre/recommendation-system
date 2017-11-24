@@ -56,7 +56,7 @@ class Loading {
         this.context.arc(this.canvas.width/2, this.canvas.width/2, this.canvas.width/3*this.scale, 0, Math.PI);
         this.context.stroke();
 
-        this.wheel2 += Constants.ROTATION_SPEED;
+        this.wheel2 += 1.3 * Constants.ROTATION_SPEED;
         if (this.wheel2 > Math.PI * 2)
             this.wheel2 -= Math.PI * 2;
 
