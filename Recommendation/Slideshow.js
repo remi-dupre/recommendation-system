@@ -44,12 +44,12 @@ class Slideshow {
             divDOM.onclick = () => { location.href = img.href; }
             divDOM.onmouseover = () => {
                 divDOM.fade = 'in';
-                fade(dom);
+                fade(divDOM);
                 divDOM.style.textDecoration = 'underline';
             }
             divDOM.onmouseout = () => {
                 divDOM.fade = 'out';
-                fade(dom);
+                fade(divDOM);
                 divDOM.style.textDecoration = 'none';
             }
 
