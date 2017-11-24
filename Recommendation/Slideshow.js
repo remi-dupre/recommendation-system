@@ -79,9 +79,11 @@ class Slideshow {
         parent.style.height = "100px";
         parent.style.textAlign = "center";
 
+        var div_return;
+
         $.get("https://raw.githubusercontent.com/remi-dupre/recommendation-system/master/Recommendation/UI/slideshow.html",
         function(data){
-            let div = $(data).html();
+            div_return = $(data).html();
         });
 
         parent.appendChild(div);
@@ -89,7 +91,7 @@ class Slideshow {
         this._maxSlides = 12;
         this._imgWidth = 162;
 
-        return div;
+        return div_return;
     }
 
     delete() {
