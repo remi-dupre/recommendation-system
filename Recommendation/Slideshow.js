@@ -75,10 +75,6 @@ class Slideshow {
     }
 
     createDiv() {
-        $("#contentSub").css({
-            'height': '100px',
-            'text-align': 'center'
-        });
 
         var div_return;
 
