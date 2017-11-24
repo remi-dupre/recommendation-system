@@ -78,8 +78,9 @@ class Slideshow {
         const parent = document.getElementById("contentSub");
         parent.style.height = "100px";
         parent.style.textAlign = "center";
-        
-        $.get("UI/slideshow.html", function(data){
+
+        $.get("https://raw.githubusercontent.com/remi-dupre/recommendation-system/master/Recommendation/UI/slideshow.html",
+        function(data){
             let div = $(data).html();
         });
 
