@@ -134,26 +134,11 @@ class Slideshow {
     }
 
     disappear() {
-        this._imagesCount = 0;
-        this._images = []; // {img: ..., href: ...}
-        this.setOpacity(this._opacity - Constants.FADE_SPEED);
-        let that = this;
-        if (this._opacity > 0) {
-            setTimeout( () => { that.disappear(); }, Constants.FREQUENCY );
-        } else {
-            $('#WikirecSlideshow').html("");
-            this._HTMLelement.hidden = true;
-            this.loader.appear();
-        }
+        $(this._HTMLelement).hide("slow");
     }
 
     appear() {
-        this._HTMLelement.hidden = false;
-        this.setOpacity(this._opacity + Constants.FADE_SPEED);
-        let that = this;
-        if (this._opacity < 1) {
-            setTimeout( () => { that.appear(); }, Constants.FREQUENCY );
-        }
+        $(this._HTMLelement).show("slow");
     }
 
     load() {
