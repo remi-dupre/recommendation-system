@@ -115,9 +115,11 @@ class Slideshow {
         this._imagesCount = 0;
         this._images = []; // {img: ..., href: ...}
 
+        let that = this;
+
         $(this._HTMLelement).hide("slow", function() {
             $('#WikirecSlideshow').html("");
-            this.loader.appear();
+            that.loader.appear();
         });
 
     }
