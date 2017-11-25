@@ -15,49 +15,50 @@ class Slideshow {
         $.get("https://raw.githubusercontent.com/remi-dupre/recommendation-system/master/Recommendation/UI/slideshow.html",
         function(data){
             $(this._HTMLelement).append(data);
-        });
 
-        // String .format()
-        if (!String.prototype.format) {
-          String.prototype.format = function() {
-            var args = arguments;
-            return this.replace(/{(\d+)}/g, function(match, number) {
-              return typeof args[number] != 'undefined'
-                ? args[number]
-                : match
-              ;
-            });
-          };
-        }
-
-        let count_imgs = 1;
-
-
-        for (let img of this._images) {
-            if (count_imgs == 1 || count_imgs == 4) {
-                        $(this._HTMLelement).find('.carousel-inner')
-                                            .append('<div class="bootstrap item{0}">\
-                                                    <div class="bootstrap row">\
-                                                    </div>\
-                                                </div>'
-                                                .format((count_imgs == 1) ? " active" : "")
-                                                );
+            // String .format()
+            if (!String.prototype.format) {
+              String.prototype.format = function() {
+                var args = arguments;
+                return this.replace(/{(\d+)}/g, function(match, number) {
+                  return typeof args[number] != 'undefined'
+                    ? args[number]
+                    : match
+                  ;
+                });
+              };
             }
 
-            const title = (img.title.length > 20) ? img.title.substr(0, 20) + '...' : img.title;
+            let count_imgs = 1;
 
-            $(this._HTMLelement).find('.carousel-inner .row:last')
-                    .append('<div class="bootstrap col-md-4">\
-                          <figure class="bootstrap gallery-item">\
-                              <a href="{0}"><img src="{1}" class="bootstrap img-responsive thumbnail"></a>\
-                              <figcaption class="bootstrap img-title">\
-                                  <h5>{2}</h5>\
-                              </figcaption>\
-                          </figure>\
-                        </div>'.format(img.href, img.img, title));
 
-            count_imgs += 1;
-        }
+            for (let img of this._images) {
+                if (count_imgs == 1 || count_imgs == 4) {
+                            $(this._HTMLelement).find('.carousel-inner')
+                                                .append('<div class="bootstrap item{0}">\
+                                                        <div class="bootstrap row">\
+                                                        </div>\
+                                                    </div>'
+                                                    .format((count_imgs == 1) ? " active" : "")
+                                                    );
+                }
+
+                const title = (img.title.length > 20) ? img.title.substr(0, 20) + '...' : img.title;
+
+                $(this._HTMLelement).find('.carousel-inner .row:last')
+                        .append('<div class="bootstrap col-md-4">\
+                              <figure class="bootstrap gallery-item">\
+                                  <a href="{0}"><img src="{1}" class="bootstrap img-responsive thumbnail"></a>\
+                                  <figcaption class="bootstrap img-title">\
+                                      <h5>{2}</h5>\
+                                  </figcaption>\
+                              </figure>\
+                            </div>'.format(img.href, img.img, title));
+
+                count_imgs += 1;
+            }
+
+        });
 
     }
 
