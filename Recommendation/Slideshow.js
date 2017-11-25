@@ -34,8 +34,6 @@ class Slideshow {
             let count_imgs = 0;
 
             for (let img of that._images) {
-                if (count_imgs >= that._maxSlides) { break; }
-
                 if (count_imgs % 3 == 0) {
                             $(that._HTMLelement).find('.carousel-inner')
                                                 .append('<div class="bootstrap item{0}">\
