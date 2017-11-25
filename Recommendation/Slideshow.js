@@ -65,8 +65,9 @@ class Slideshow {
         $("#contentSub").css({ 'text-align': "center" });
 
 
-        let div  = $(document.createElement('div')).attr('id', 'WikirecSlideshow');
-
+        const div = document.createElement('div');
+        div.id = "WikirecSlideshow";
+        
         $("#contentSub").append(div);
 
         this._maxSlides = 12;
