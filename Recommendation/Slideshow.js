@@ -34,6 +34,8 @@ class Slideshow {
             let count_imgs = 0;
 
             for (let img of that._images) {
+                if (count_imgs >= that._maxSlides) { break; }
+
                 if (count_imgs % 3 == 0) {
                             $(that._HTMLelement).find('.carousel-inner')
                                                 .append('<div class="bootstrap item{0}">\
@@ -49,7 +51,7 @@ class Slideshow {
                 $(that._HTMLelement).find('.carousel-inner .row:last')
                         .append('<div class="bootstrap col-md-4">\
                               <figure class="bootstrap gallery-item">\
-                                  <a href="{0}"><img src="{1}" class="bootstrap img-responsive thumbnail"></a>\
+                                  <a href="{0}"><div class="bootstrap img-responsive thumbnail img" style="background-image:url(\'{1}\')"></div>\
                                   <figcaption class="bootstrap img-title">\
                                       <h5>{2}</h5>\
                                   </figcaption>\
