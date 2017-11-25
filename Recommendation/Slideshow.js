@@ -12,29 +12,10 @@ class Slideshow {
 
     draw() {
 
-        const fade = (dom) => {
-            if (dom.fade == 'in') {
-                $(dom).css({
-                    'opacity' : Math.min( 1, Number($(dom).css('opacity')) + 0.02 )
-                });
-
-                if (Number($(dom).css('opacity')) < 1) {
-                    setTimeout( () => { fade(dom); }, Constants.FREQUENCY );
-                } else {
-                    dom.fade = 'no';
-                }
-            } else if (dom.fade == 'out') {
-                $(dom).css({
-                    'opacity' : Math.max( 0.7, Number($(dom).css('opacity')) - 0.02 )
-                });
-
-                if (Number($(dom).css('opacity')) > 0.7) {
-                    setTimeout( () => { fade(dom); }, Constants.FREQUENCY );
-                } else {
-                    dom.fade = 'no';
-                }
-            }
-        }
+        $.get("https://raw.githubusercontent.com/remi-dupre/recommendation-system/master/Recommendation/UI/slideshow.html",
+        function(data){
+            $(this._HTMLelement).append($(data).html());
+        });
 
         // String .format()
         if (!String.prototype.format) {
@@ -49,7 +30,7 @@ class Slideshow {
           };
         }
 
-        let offset = 0, count_imgs = 1;
+        let count_imgs = 1;
 
 
         for (let img of this._images) {
@@ -83,19 +64,15 @@ class Slideshow {
     createDiv() {
         $("#contentSub").css({ 'text-align': "center" });
 
-        var div_return;
 
-        $.get("https://raw.githubusercontent.com/remi-dupre/recommendation-system/master/Recommendation/UI/slideshow.html",
-        function(data){
-            div_return = $(data).html();
-        });
+        let div  = $(document.createElement('div')).attr('id', 'WikirecSlideshow');
 
-        $("#contentSub").append(div_return);
+        $("#contentSub").append(div);
 
         this._maxSlides = 12;
         this._imgWidth = 162;
 
-        return div_return;
+        return div;
     }
 
     delete() {
@@ -134,6 +111,12 @@ class Slideshow {
     }
 
     disappear() {
+        this._imagesCount = 0;
+        this._images = []; // {img: ..., href: ...}
+
+        $(this._HTMLelement).hide("slow", function() {
+            this.loader.appear();
+        });
         $(this._HTMLelement).hide("slow");
     }
 
