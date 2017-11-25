@@ -14,15 +14,21 @@ class Slideshow {
 
         const fade = (dom) => {
             if (dom.fade == 'in') {
-                dom.style.opacity = Math.min( 1, Number(dom.style.opacity) + 0.02 );
-                if (Number(dom.style.opacity) < 1) {
+                $(dom).css({
+                    'opacity' : Math.min( 1, Number($(dom).css('opacity')) + 0.02 )
+                });
+
+                if (Number($(dom).css('opacity')) < 1) {
                     setTimeout( () => { fade(dom); }, Constants.FREQUENCY );
                 } else {
                     dom.fade = 'no';
                 }
             } else if (dom.fade == 'out') {
-                dom.style.opacity = Math.max( 0.7, Number(dom.style.opacity) - 0.02 );
-                if (Number(dom.style.opacity) > 0.7) {
+                $(dom).css({
+                    'opacity' : Math.max( 0.7, Number($(dom).css('opacity')) - 0.02 )
+                });
+
+                if (Number($(dom).css('opacity')) > 0.7) {
                     setTimeout( () => { fade(dom); }, Constants.FREQUENCY );
                 } else {
                     dom.fade = 'no';
@@ -75,9 +81,7 @@ class Slideshow {
     }
 
     createDiv() {
-        $("#contentSub").css({
-            'text-align': 'center'
-        });
+        $("#contentSub").css({ 'text-align': "center" });
 
         var div_return;
 
@@ -124,7 +128,9 @@ class Slideshow {
 
     setOpacity(x) {
         this._opacity = Math.min(1, Math.max(0, x));
-        this._HTMLelement.style.opacity = this._opacity;
+         $(this._HTMLelement).css({
+            'opacity': this._opacity
+        });
     }
 
     disappear() {
