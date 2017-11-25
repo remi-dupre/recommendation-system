@@ -12,15 +12,17 @@ class Slideshow {
 
     draw() {
 
+        let that = this;
+
         $.get("https://raw.githubusercontent.com/remi-dupre/recommendation-system/master/Recommendation/UI/slideshow.html",
         function(data){
-            $(this._HTMLelement).append(data);
+            $(that._HTMLelement).append(data);
 
             // String .format()
             if (!String.prototype.format) {
               String.prototype.format = function() {
                 var args = arguments;
-                return this.replace(/{(\d+)}/g, function(match, number) {
+                return that.replace(/{(\d+)}/g, function(match, number) {
                   return typeof args[number] != 'undefined'
                     ? args[number]
                     : match
@@ -31,10 +33,9 @@ class Slideshow {
 
             let count_imgs = 1;
 
-
-            for (let img of this._images) {
+            for (let img of that._images) {
                 if (count_imgs == 1 || count_imgs == 4) {
-                            $(this._HTMLelement).find('.carousel-inner')
+                            $(that._HTMLelement).find('.carousel-inner')
                                                 .append('<div class="bootstrap item{0}">\
                                                         <div class="bootstrap row">\
                                                         </div>\
@@ -45,7 +46,7 @@ class Slideshow {
 
                 const title = (img.title.length > 20) ? img.title.substr(0, 20) + '...' : img.title;
 
-                $(this._HTMLelement).find('.carousel-inner .row:last')
+                $(that._HTMLelement).find('.carousel-inner .row:last')
                         .append('<div class="bootstrap col-md-4">\
                               <figure class="bootstrap gallery-item">\
                                   <a href="{0}"><img src="{1}" class="bootstrap img-responsive thumbnail"></a>\
@@ -127,6 +128,10 @@ class Slideshow {
 
     appear() {
         $(this._HTMLelement).show("slow");
+        $.get("https://raw.githubusercontent.com/remi-dupre/recommendation-system/master/Recommendation/UI/slideshow.html",
+        function(data){
+            $("#WikirecSlideshow").append(data);
+        });
     }
 
     load() {
