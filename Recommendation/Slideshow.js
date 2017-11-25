@@ -128,10 +128,6 @@ class Slideshow {
 
     appear() {
         $(this._HTMLelement).show("slow");
-        $.get("https://raw.githubusercontent.com/remi-dupre/recommendation-system/master/Recommendation/UI/slideshow.html",
-        function(data){
-            $("#WikirecSlideshow").append(data);
-        });
     }
 
     load() {
