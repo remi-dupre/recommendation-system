@@ -141,7 +141,7 @@ class Slideshow {
         if (this._opacity > 0) {
             setTimeout( () => { that.disappear(); }, Constants.FREQUENCY );
         } else {
-            $('#WikirecSlideshow')[0].innerHTML = '';
+            $('#WikirecSlideshow').innerHTML = '';
             this._HTMLelement.hidden = true;
             this.loader.appear();
         }
