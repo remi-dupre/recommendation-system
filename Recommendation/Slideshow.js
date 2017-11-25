@@ -67,8 +67,8 @@ class Slideshow {
 
         const div = document.createElement('div');
         div.id = "WikirecSlideshow";
-        
-        $("#contentSub").append(div);
+
+        $("#contentSub").append($(div));
 
         this._maxSlides = 12;
         this._imgWidth = 162;
