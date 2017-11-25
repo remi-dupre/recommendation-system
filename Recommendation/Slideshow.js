@@ -49,12 +49,12 @@ class Slideshow {
                 $(that._HTMLelement).find('.carousel-inner .row:last')
                         .append('<div class="bootstrap col-md-4">\
                               <figure class="bootstrap gallery-item">\
-                                  <a href="{0}"><img src="{1}" class="bootstrap img-responsive thumbnail"></a>\
+                                  <a href="{0}"><img src="{1}" class="bootstrap img-responsive thumbnail" style="height: 100px; width: {2}px;"></a>\
                                   <figcaption class="bootstrap img-title">\
-                                      <h5>{2}</h5>\
+                                      <h5>{3}</h5>\
                                   </figcaption>\
                               </figure>\
-                            </div>'.format(img.href, img.img, title));
+                            </div>'.format(img.href, img.img, String(that._imgWidth), title));
 
                 count_imgs += 1;
             }
