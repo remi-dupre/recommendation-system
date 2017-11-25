@@ -34,8 +34,7 @@ class Slideshow {
             let count_imgs = 0;
 
             for (let img of that._images) {
-                if (count_imgs >= Constants.SLIDESHOW_NB_IMGS)
-                    break
+                if (count_imgs >= Constants.SLIDESHOW_NB_IMGS) { break; }
 
                 if (count_imgs % 3 == 0) {
                             $(that._HTMLelement).find('.carousel-inner')
