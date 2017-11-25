@@ -14,7 +14,7 @@ class Slideshow {
 
         $.get("https://raw.githubusercontent.com/remi-dupre/recommendation-system/master/Recommendation/UI/slideshow.html",
         function(data){
-            $(this._HTMLelement).append($(data).html());
+            $(this._HTMLelement).append(data);
         });
 
         // String .format()
@@ -34,13 +34,13 @@ class Slideshow {
 
 
         for (let img of this._images) {
-            if (count_imgs === 1 || count_imgs === 4) {
+            if (count_imgs == 1 || count_imgs == 4) {
                         $(this._HTMLelement).find('.carousel-inner')
                                             .append('<div class="bootstrap item{0}">\
                                                     <div class="bootstrap row">\
                                                     </div>\
                                                 </div>'
-                                                .format((count_imgs === 1) ? " active" : "")
+                                                .format((count_imgs == 1) ? " active" : "")
                                                 );
             }
 
