@@ -65,8 +65,6 @@ class Slideshow {
                 count_imgs += 1;
             }
 
-            $('.gallery-item > .img-title').hide();
-
             $('#slideshow').carousel({
                 interval: 5000
             });
