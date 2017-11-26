@@ -30,13 +30,13 @@ $(document).ready(function() {
 
     $('#serendipity').slider({
     	formatter: function(value) {
-    		return 'Serendipity value: ' + (localStorage[Constants.SERENDIPITY_KEY]) ? Number(localStorage[Constants.SERENDIPITY_KEY]) : 5;
+    		return 'Serendipity value: ' + (localStorage[Constants.STORAGE_SERENDIPITY]) ? Number(localStorage[Constants.STORAGE_SERENDIPITY]) : 5;
     	},
         tooltip_position: 'bottom'
     });
     
     $('#serendipity').onchange(function(e) {
-        localStorage[Constants.SERENDIPITY_KEY] = $('#serendipity').value;
+        localStorage[Constants.STORAGE_SERENDIPITY] = $('#serendipity').value;
     });
 
 
