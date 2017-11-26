@@ -613,6 +613,10 @@ background: #428bca;
     text-shadow: 0 0 5px black;
 }
 
+.carousel-indicators li {
+    border: 1px solid black;
+}
+
 .carousel-inner .img {
     filter: gray; /* IE6-9 */
     -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
