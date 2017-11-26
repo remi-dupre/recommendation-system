@@ -41,7 +41,7 @@ $(document).ready(function() {
          5
     );
     
-    $('#serendipity')[0].onchange(function(e) {
+    $('#serendipity').click(function(e) {
         localStorage[Constants.STORAGE_SERENDIPITY] = $('#serendipity')[0].value;
     });
 
