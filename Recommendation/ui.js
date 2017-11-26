@@ -30,9 +30,13 @@ $(document).ready(function() {
 
     $('#serendipity').slider({
     	formatter: function(value) {
-    		return 'Serendipity value: ' + value;
+    		return 'Serendipity value: ' + (localStorage[Constants.SERENDIPITY_KEY]) ? Number(localStorage[Constants.SERENDIPITY_KEY]) : 5;
     	},
         tooltip_position: 'bottom'
+    });
+    
+    $('#serendipity').onchange(function(e) {
+        localStorage[Constants.SERENDIPITY_KEY] = $('#serendipity').value;
     });
 
 
