@@ -36,7 +36,7 @@ $(document).ready(function() {
     });
     
     $('#serendipity')[0].value = (
-        ((localStorage[Constants.STORAGE_SERENDIPITY] !== undefined) ? 
+        (localStorage[Constants.STORAGE_SERENDIPITY] !== undefined) ? 
          Number(localStorage[Constants.STORAGE_SERENDIPITY]) : 
          5
     );
