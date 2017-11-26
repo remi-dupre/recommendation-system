@@ -44,7 +44,7 @@ background: #428bca;
 
 .carousel-inner > div > div img {
   display: block;
-  transition: .1s transform;
+  transition: 1.2s transform;
   transform: translateZ(0);
 }
 
@@ -64,7 +64,7 @@ background: #428bca;
   filter: none; /* IE6-9 */
   -webkit-filter: grayscale(0); /* Google Chrome, Safari 6+ & Opera 15+ */
   transform: scale(1.2,1.2);
-  transition: .3s transform;
+  transition: .6s transform;
 }
 
 .carousel img {
@@ -257,26 +257,10 @@ background: #428bca;
     $('#slideshow').carousel({
         interval: 5000
     });
-    $('.carousel[data-type="multi"] .item').each(function(){
-      var next = $(this).next();
-      if (!next.length) {
-        next = $(this).siblings(':first');
-      }
-      next.children(':first-child').clone().appendTo($(this));
-
-      for (var i=0;i<2;i++) {
-        next=next.next();
-        if (!next.length) {
-        	next = $(this).siblings(':first');
-      	}
-
-        next.children(':first-child').clone().appendTo($(this));
-      }
-    });
 
     $('.gallery-item a').hover(
-        function() { $(this).parent().find('.img-title').fadeTo(300, 1);},
-        function() { $(this).parent().find('.img-title').fadeTo(200, 0);}
+        function() { $(this).parent().find('.img-title').fadeTo(500, 1);},
+        function() { $(this).parent().find('.img-title').fadeTo(300, 0);}
         );
 
 });

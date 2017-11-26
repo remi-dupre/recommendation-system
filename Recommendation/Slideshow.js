@@ -78,10 +78,10 @@ class Slideshow {
 
             $('.carousel-inner .img').hover(
                 function() {
-                    $(this).parent().find('.img-title').fadeTo(300, 1);
+                    $(this).parent().find('.img-title').fadeTo(500, 1);
                 },
                 function() {
-                    $(this).parent().find('.img-title').fadeTo(200, 0);
+                    $(this).parent().find('.img-title').fadeTo(300, 0);
                 }
             );
 
