@@ -44,7 +44,7 @@ class Slideshow {
                                                     );
 
                             count_indicator += 1;
-                            
+
                             $(that._HTMLelement).find('.carousel-inner')
                                                 .append('<div class="bootstrap item{0}">\
                                                         <div class="bootstrap row">\
@@ -72,6 +72,9 @@ class Slideshow {
             $('#slideshow').carousel({
                 interval: 5000
             });
+
+            $('.gallery-item .img-title').hide();
+
 
             $('.gallery-item a').hover(
                 function() {
