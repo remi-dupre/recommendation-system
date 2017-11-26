@@ -13,7 +13,8 @@ const Constants = {
     FADE_SPEED : 0.03,
     FREQUENCY : 16,
     ROTATION_SPEED : Math.PI / 32,
-    SLIDESHOW_NB_IMGS : 6,
+    SLIDESHOW_NB_IMGS : 8,
+    SLIDESHOW_NB_PER_SLIDE : 4,
 
     // Last week
     DATE_BEG : new Date((new Date(now)).setDate(now.getDate() - 7)),

@@ -33,11 +33,13 @@ class Slideshow {
 
             let count_imgs = 0, count_indicator = 0;
 
+            let bootstrap_col = Math.floor(12/Constants.SLIDESHOW_NB_PER_SLIDE);
+
 
             for (let img of that._images) {
                 if (count_imgs >= that._maxSlides) { break; }
 
-                if (count_imgs % 3 == 0) {
+                if (count_imgs % Constants.SLIDESHOW_NB_PER_SLIDE == 0) {
                             $(that._HTMLelement).find('.carousel-indicators')
                                                 .append('<li data-target="#slideshow" data-slide-to="{0}" class="bootstrap{1}"></li>'
                                                     .format(String(count_indicator), (count_indicator == 0) ? " active" : "")
@@ -57,14 +59,14 @@ class Slideshow {
                 const title = (img.title.length > 20) ? img.title.substr(0, 20) + '...' : img.title;
 
                 $(that._HTMLelement).find('.carousel-inner .row:last')
-                        .append('<div class="bootstrap col-md-4">\
+                        .append('<div class="bootstrap col-md-{0}">\
                               <figure class="bootstrap gallery-item">\
-                                  <a href="{0}"><div class="bootstrap img-responsive thumbnail img" style="background-image:url(\'{1}\'); overflow: hidden; background-position: center; background-size: cover;"></div>\
+                                  <a href="{1}"><div class="bootstrap img-responsive thumbnail img" style="background-image:url(\'{2}\'); overflow: hidden; background-position: center; background-size: cover;"></div>\
                                   <figcaption class="bootstrap img-title">\
-                                      <h5>{2}</h5>\
+                                      <h5>{3}</h5>\
                                   </figcaption>\
                               </figure>\
-                            </div>'.format(img.href, img.img, title));
+                            </div>'.format(bootstrap_col, img.href, img.img, title));
 
                 count_imgs += 1;
             }
