@@ -52,7 +52,7 @@ class Slideshow {
                         .append('<div class="bootstrap col-md-4">\
                               <figure class="bootstrap gallery-item">\
                                   <a href="{0}"><div class="bootstrap img-responsive thumbnail img" style="background-image:url(\'{1}\'); overflow: hidden; background-position: center; background-size: cover;"></div>\
-                                  <figcaption class="bootstrap img-title" style="visibility: hidden;">\
+                                  <figcaption class="bootstrap img-title">\
                                       <h5>{2}</h5>\
                                   </figcaption>\
                               </figure>\
@@ -60,6 +60,8 @@ class Slideshow {
 
                 count_imgs += 1;
             }
+
+            $('.gallery-item > .img-title').hide();
 
             $('#slideshow').carousel({
                 interval: 5000
