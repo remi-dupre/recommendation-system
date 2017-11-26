@@ -30,13 +30,13 @@ $(document).ready(function() {
 
     $('#serendipity').slider({
     	formatter: function(value) {
-    		return 'Serendipity value: ' + (localStorage[Constants.STORAGE_SERENDIPITY]) ? Number(localStorage[Constants.STORAGE_SERENDIPITY]) : 5;
+    		return 'Serendipity value: ' + ((localStorage[Constants.STORAGE_SERENDIPITY] !== undefined) ? Number(localStorage[Constants.STORAGE_SERENDIPITY]) : 5);
     	},
         tooltip_position: 'bottom'
     });
     
-    $('#serendipity').onchange(function(e) {
-        localStorage[Constants.STORAGE_SERENDIPITY] = $('#serendipity').value;
+    $('#serendipity')[0].onchange(function(e) {
+        localStorage[Constants.STORAGE_SERENDIPITY] = $('#serendipity')[0].value;
     });
 
 
