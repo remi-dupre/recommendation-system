@@ -37,6 +37,10 @@ class Slideshow {
                 if (count_imgs >= that._maxSlides) { break; }
 
                 if (count_imgs % 3 == 0) {
+                            $(that._HTMLelement).find('.carousel-indicators')
+                                                .append('<li data-target="#slideshow" data-slide-to="{0}" class="bootstrap{1}"></li>'
+                                                    .format(String(count_imgs), (count_imgs == 0) ? " active" : "")
+                                                    );
                             $(that._HTMLelement).find('.carousel-inner')
                                                 .append('<div class="bootstrap item{0}">\
                                                         <div class="bootstrap row">\
