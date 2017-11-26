@@ -76,7 +76,7 @@ class Slideshow {
             $('.gallery-item .img-title').hide();
 
 
-            $('.gallery-item a').hover(
+            $('.carousel-inner .img').hover(
                 function() {
                     $(this).parent().find('.img-title').fadeTo(300, 1);
                 },
