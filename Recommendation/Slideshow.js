@@ -51,7 +51,7 @@ class Slideshow {
                 $(that._HTMLelement).find('.carousel-inner .row:last')
                         .append('<div class="bootstrap col-md-4">\
                               <figure class="bootstrap gallery-item">\
-                                  <a href="{0}"><div class="bootstrap img-responsive thumbnail img" style="background-image:url(\'{1}\'); overflow: hidden;"></div>\
+                                  <a href="{0}"><div class="bootstrap img-responsive thumbnail img" style="background-image:url(\'{1}\'); overflow: hidden; background-position: center; background-size: cover;"></div>\
                                   <figcaption class="bootstrap img-title" style="visibility: hidden;">\
                                       <h5>{2}</h5>\
                                   </figcaption>\
